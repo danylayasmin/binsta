@@ -1,0 +1,10 @@
+{
+    "require": {
+        "twig/twig": "^3.5"
+    },
+    "autoload": {
+        "files": [
+            "helpers.php"
+        ]
+    }
+}
