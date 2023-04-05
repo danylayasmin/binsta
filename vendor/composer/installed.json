@@ -2,8 +2,8 @@
     "packages": [
         {
             "name": "gabordemooij/redbean",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
+            "version": "v5.7.4",
+            "version_normalized": "5.7.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gabordemooij/redbean.git",
@@ -19,7 +19,6 @@
                 "php": ">=5.3.4"
             },
             "time": "2023-03-17T22:39:19+00:00",
-            "default-branch": true,
             "type": "library",
             "installation-source": "dist",
             "autoload": {

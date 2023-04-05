@@ -1,12 +1,14 @@
 {
     "require": {
         "twig/twig": "^3.5",
-        "gabordemooij/redbean": "dev-master"
+        "gabordemooij/redbean": "^5.7"
     },
     "autoload": {
         "files": [
             "helpers.php",
-            "controllers/BaseController.php"
+            "controllers/BaseController.php",
+            "controllers/UserController.php",
+            "controllers/TestController.php"
         ]
     }
 }

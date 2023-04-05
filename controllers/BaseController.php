@@ -10,4 +10,13 @@ class BaseController
         $bean = R::findOne($typeOfBean, 'id = ?', [$queryStringKey]);
         return $bean;
     }
+
+    // check if user is logged in
+    public function authorizeUser()
+    {
+        if (!isset($_SESSION['loggedInUser'])) {
+            header('Location: /user/login');
+            die();
+        }
+    }
 }
