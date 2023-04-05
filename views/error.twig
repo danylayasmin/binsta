@@ -1,0 +1,12 @@
+{% extends "./layouts/app.twig" %}
+{% block title %}
+    Error {{ errorNumber }}
+{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block content %}
+<h2>Error {{ errorNumber }}</h2>
+<h5>Oops! Something went wrong.</h5>
+<p>{{ errorMessage }}</p>
+<a href="{{ url }}">Go back</a>
+{% endblock %}
