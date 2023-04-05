@@ -5,7 +5,8 @@
     },
     "autoload": {
         "files": [
-            "helpers.php"
+            "helpers.php",
+            "controllers/BaseController.php"
         ]
     }
 }
