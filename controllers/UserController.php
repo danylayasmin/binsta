@@ -97,4 +97,14 @@ class UserController extends BaseController
         $_SESSION['loggedInUser'] = $user['id'];
         header("Location: /");
     }
+
+    // forgot password page
+    public function forgot()
+    {
+        $const = array(
+            'securityQuestions' => ['What was your childhood nickname?', 'What was the name of your favorite (stuffed) pet?', 'What city were you born in?']
+        );
+
+        displayTemplate('users/forgot.twig', $const);
+    }
 }
