@@ -11,6 +11,15 @@
     </head>
 
     <body>
+        {% block navbar %}
+        <nav>
+            <ul>
+                <li><a href="/user/login">Log in</a></li>
+                <li><a href="/user/signup">Sign up</a></li>
+                <li><a href="/user/logout">Log out</a></li>
+            </ul>
+        </nav>
+        {% endblock %}
         <div id="content">
         {% block content %}
         {% endblock %}
