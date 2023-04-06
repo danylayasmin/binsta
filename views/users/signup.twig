@@ -16,6 +16,18 @@
                 </td>
             </tr>
             <tr>
+                <th>Display name</th>
+                <td>
+                    <input type="text" name="displayName" required placeholder="Your display name">
+                </td>
+            </tr>
+            <tr>
+                <th>E-mail</th>
+                <td>
+                    <input type="email" name="email" required placeholder="Your e-mail">
+                </td>
+            </tr>
+            <tr>
                 <th>Password</th>
                 <td>
                     <input type="password" name="password" required placeholder="Your password">
@@ -27,9 +39,26 @@
                     <input type="password" name="confirmPassword" required placeholder="Confirm your password">
                 </td>
             </tr>
+            <tr>
+                <th>Security question</th>
+                <td>
+                    <select name="securityQuestion">
+                        <option value="" selected disabled hidden>Choose a security question</option>
+                        {% for securityQuestion in securityQuestions %}
+                            <option value="{{ securityQuestion }}">{{ securityQuestion }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Security answer</th>
+                <td>
+                    <input type="text" name="securityAnswer" required placeholder="Your security answer">
+                </td>
+            </tr>
         </tbody>
     </table>
-<a href="/">Back</a>
-<input type="submit" value="Sign up"/>
+    <a href="/">Back</a>
+    <input type="submit" value="Sign up"/>
 </form>
 {% endblock %}

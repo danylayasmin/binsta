@@ -53,7 +53,11 @@ class UserController extends BaseController
             exit;
         }
 
-        displayTemplate('users/signup.twig', []);
+        $const = array(
+            'securityQuestions' => ['What was your childhood nickname?', 'What was the name of your favorite (stuffed) pet?', 'What city were you born in?']
+        );
+
+        displayTemplate('users/signup.twig', $const);
     }
 
     // sign up user
@@ -72,10 +76,22 @@ class UserController extends BaseController
             die();
         }
 
+        // check if e-mail is already taken
+        $email = R::findOne('user', 'email = ?', [$_POST['email']]);
+        if (!is_null($email)) {
+            error(401, 'E-mail already taken', '/user/signup');
+            die();
+        }
+
         // create user, store in database
         $user = R::dispense('user');
         $user->username = $_POST['username'];
+        $user->displayName = $_POST['displayName'];
+        $user->email = $_POST['email'];
         $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $user->securityAnswer = $_POST['securityAnswer'];
+        $user->bio = null;
+        $user->avatar = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
         R::store($user);
         // start session, set variable
         $_SESSION['loggedInUser'] = $user['id'];
