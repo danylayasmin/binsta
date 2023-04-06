@@ -44,8 +44,8 @@ class UserController extends BaseController
         die();
     }
 
-    // register page
-    public function register()
+    // sign up page
+    public function signup()
     {
         // check if user is already logged in
         if (isset($_SESSION['loggedInUser'])) {
@@ -53,22 +53,22 @@ class UserController extends BaseController
             exit;
         }
 
-        displayTemplate('users/register.twig', []);
+        displayTemplate('users/signup.twig', []);
     }
 
-    // register user
-    public function registerPost() 
+    // sign up user
+    public function signupPost() 
     {
         // check if both passwords are the same
         if ($_POST["password"] !== $_POST["confirmPassword"]) {
-            error(401, 'Passwords do not match', '/user/register');
+            error(401, 'Passwords do not match', '/user/signup');
             die();
         }
         
         // check if username is already taken
         $user = R::findOne('user', 'username = ?', [$_POST['username']]);
         if (!is_null($user)) {
-            error(401, 'Username already taken', '/user/register');
+            error(401, 'Username already taken', '/user/signup');
             die();
         }
 
