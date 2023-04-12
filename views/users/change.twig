@@ -1,0 +1,29 @@
+{% extends "./layouts/app.twig" %}
+{% block title %}
+	Change password
+{% endblock %}
+{% block navbar %}
+{% endblock %}
+{% block content %}
+<h2>Change your password</h2>
+<form method="post" action="change">
+    <table>
+        <tbody>
+            <tr>
+                <th>New password</th>
+                <td>
+                    <input type="password" name="password" required placeholder="Your new password">
+                </td>
+            </tr>
+            <tr>
+                <th>Confirm new password</th>
+                <td>
+                    <input type="password" name="confirmPassword" required placeholder="Confirm your new password">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/">Back</a>
+    <input type="submit" value="Change password"/>
+</form>
+{% endblock %}

@@ -91,7 +91,7 @@ class UserController extends BaseController
         $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
         $user->securityAnswer = $_POST['securityAnswer'];
         $user->bio = null;
-        $user->avatar = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+        $user->profilePicture = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
         R::store($user);
         // start session, set variable
         $_SESSION['loggedInUser'] = $user['id'];
@@ -106,5 +106,66 @@ class UserController extends BaseController
         );
 
         displayTemplate('users/forgot.twig', $const);
+    }
+
+    // forgot password change
+    public function forgotPost()
+    {
+        // check if username is set
+        $user = R::findOne('user', 'username = ?', [$_POST['username']]);
+        if (!isset($user)) {
+            error(401, 'User not found with username ' . $_POST['username'], '/user/forgot');
+        }
+
+        //check if e-mail is correct
+        if ($_POST['email'] !== $user->email) {
+            error(401, 'E-mail is incorrect', '/user/forgot');
+        }
+
+        // check if security answer is correct
+        if ($_POST['securityAnswer'] !== $user->securityAnswer) {
+            error(401, 'Security answer is incorrect', '/user/forgot');
+        }
+
+        // set session variable
+        $_SESSION['forgotUser'] = $user['id'];
+        
+        // change password
+        header("Location: /user/change");
+    }
+
+    // change password page
+    public function change()
+    {
+        // retrieve user
+        $user = $this->getBeanById('user', $_SESSION['forgotUser']);
+        
+        $data = [
+            'user' => $user,
+        ];
+        
+        displayTemplate('users/change.twig', $data);
+    }
+
+    // change password
+    public function changePost()
+    {
+        // retrieve user
+        $user = $this->getBeanById('user', $_SESSION['forgotUser']);
+
+        // check if both passwords are the same
+        if ($_POST["password"] !== $_POST["confirmPassword"]) {
+            error(401, 'Passwords do not match', '/user/change');
+            die();
+        }
+
+        // change password
+        $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        R::store($user);
+
+        // end session
+        session_destroy();
+        header("Location: /user/login");
+        die();
     }
 }
