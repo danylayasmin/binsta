@@ -13,7 +13,7 @@ class UserController extends BaseController
             exit;
         }
         
-        displayTemplate('users/login.twig', []);
+        displayTemplate('user/login.twig', []);
     }
 
     // login user
@@ -57,7 +57,7 @@ class UserController extends BaseController
             'securityQuestions' => ['What was your childhood nickname?', 'What was the name of your favorite (stuffed) pet?', 'What city were you born in?']
         );
 
-        displayTemplate('users/signup.twig', $const);
+        displayTemplate('user/signup.twig', $const);
     }
 
     // sign up user
@@ -105,7 +105,7 @@ class UserController extends BaseController
             'securityQuestions' => ['What was your childhood nickname?', 'What was the name of your favorite (stuffed) pet?', 'What city were you born in?']
         );
 
-        displayTemplate('users/forgot.twig', $const);
+        displayTemplate('user/forgot.twig', $const);
     }
 
     // forgot password change
@@ -144,7 +144,7 @@ class UserController extends BaseController
             'user' => $user,
         ];
         
-        displayTemplate('users/change.twig', $data);
+        displayTemplate('user/change.twig', $data);
     }
 
     // change password
