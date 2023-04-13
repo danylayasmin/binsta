@@ -138,7 +138,7 @@ class UserController extends BaseController
     public function change()
     {
         // retrieve user
-        $user = $this->getBeanById('user', $_SESSION['forgotUser']);
+        $user = $this->getBeanById('user', $_SESSION['forgotUser'] ?? $_SESSION['loggedInUser']);
         
         $data = [
             'user' => $user,
@@ -151,7 +151,7 @@ class UserController extends BaseController
     public function changePost()
     {
         // retrieve user
-        $user = $this->getBeanById('user', $_SESSION['forgotUser']);
+        $user = $this->getBeanById('user', $_SESSION['forgotUser'] ?? $_SESSION['loggedInUser']);
 
         // check if both passwords are the same
         if ($_POST["password"] !== $_POST["confirmPassword"]) {
