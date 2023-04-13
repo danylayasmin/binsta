@@ -11,5 +11,6 @@ return array(
     '2dcc1fe700145c8f64875eb0ae323e56' => $baseDir . '/helpers.php',
     '6af0efc6fde393e57db57e95e9151f72' => $baseDir . '/controllers/BaseController.php',
     'f143c32355f939df3cf07c3c2b3e5928' => $baseDir . '/controllers/UserController.php',
+    'b299b19a553ba9dc2bead52fea37aab1' => $baseDir . '/controllers/ProfileController.php',
     'd37cab07e9ad072b52d828334a6ffa0a' => $baseDir . '/controllers/TestController.php',
 );

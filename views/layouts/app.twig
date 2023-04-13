@@ -14,9 +14,12 @@
         {% block navbar %}
         <nav>
             <ul>
+                {% if loggedInUser %}
+                <li><a href="/user/logout">Log out</a></li>
+                {% else %}
                 <li><a href="/user/login">Log in</a></li>
                 <li><a href="/user/signup">Sign up</a></li>
-                <li><a href="/user/logout">Log out</a></li>
+                {% endif %}
             </ul>
         </nav>
         {% endblock %}

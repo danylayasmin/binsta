@@ -12,6 +12,7 @@ class ComposerStaticInit0fc556804440094cdc3deff907a8aea2
         '2dcc1fe700145c8f64875eb0ae323e56' => __DIR__ . '/../..' . '/helpers.php',
         '6af0efc6fde393e57db57e95e9151f72' => __DIR__ . '/../..' . '/controllers/BaseController.php',
         'f143c32355f939df3cf07c3c2b3e5928' => __DIR__ . '/../..' . '/controllers/UserController.php',
+        'b299b19a553ba9dc2bead52fea37aab1' => __DIR__ . '/../..' . '/controllers/ProfileController.php',
         'd37cab07e9ad072b52d828334a6ffa0a' => __DIR__ . '/../..' . '/controllers/TestController.php',
     );
 

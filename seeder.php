@@ -16,8 +16,8 @@ $gebruikers = [
     'displayName' => 'John Doe',
     'email' => 'john@doe.nl',
     'password' => password_hash('doe123', PASSWORD_BCRYPT),
-    'securityAnswer' => 'answer 1'
-    ]
+    'securityAnswer' => 'answer 1',
+    'registeredAt' => new DateTime('now')]
 ];
 
 //insert user
@@ -30,6 +30,7 @@ foreach ($gebruikers as $gebruiker) {
     $user->securityAnswer = $gebruiker['securityAnswer'];
     $user->bio = null;
     $user->profilePicture = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+    $user->registeredAt = $gebruiker['registeredAt'];
     R::store($user);
 }
 print(R::count('user') . " users inserted" . PHP_EOL);

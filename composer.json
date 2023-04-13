@@ -8,6 +8,7 @@
             "helpers.php",
             "controllers/BaseController.php",
             "controllers/UserController.php",
+            "controllers/ProfileController.php",
             "controllers/TestController.php"
         ]
     }

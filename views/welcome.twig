@@ -5,4 +5,10 @@
 {% block content %}
     <p>Welcome to:</p>
     <h1>{{project_name}}</h1>
+
+    {% if loggedInUser %}
+    <a href="/profile/me">Take a look at your profile</a>
+    {% else %}
+    <p>Sign up or log in to get started</p>
+    {% endif %}
 {% endblock %}
