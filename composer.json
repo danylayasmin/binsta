@@ -9,7 +9,8 @@
             "controllers/BaseController.php",
             "controllers/UserController.php",
             "controllers/ProfileController.php",
-            "controllers/TestController.php"
+            "controllers/TestController.php",
+            "controllers/PostController.php"
         ]
     }
 }

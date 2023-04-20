@@ -13,4 +13,5 @@ return array(
     'f143c32355f939df3cf07c3c2b3e5928' => $baseDir . '/controllers/UserController.php',
     'b299b19a553ba9dc2bead52fea37aab1' => $baseDir . '/controllers/ProfileController.php',
     'd37cab07e9ad072b52d828334a6ffa0a' => $baseDir . '/controllers/TestController.php',
+    '382801e60e9556a2795018dd137cd79a' => $baseDir . '/controllers/PostController.php',
 );
