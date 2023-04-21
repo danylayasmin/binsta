@@ -37,9 +37,17 @@ class PostController extends BaseController
             $image_bytes = $api->get_image($code, $theme, $language);
         }
 
-        // Output the image to the browser
-        header('Content-Type: image/png');
-        echo $image_bytes;
+        // image_bytes to base64
+        $image_bytes = base64_encode($image_bytes);
+        
+        // get data for template
+        $data = [
+            'post' => $post,
+            'image_bytes' => $image_bytes,
+            'id' => $_GET['id'],
+            'user'  => $post->user,
+        ];
+        displayTemplate('post/show.twig', $data);
     }
     
     // create new post

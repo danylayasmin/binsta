@@ -1,6 +1,7 @@
 <?php
 
-class Code2ImgAPI {
+class Code2ImgAPI
+{
     
     private $base_url = "https://code2img.vercel.app/api/to-image";
 
@@ -47,7 +48,8 @@ class Code2ImgAPI {
         "typescript"
     );
 
-    public function get_image($code, $theme = "default", $language = "plain") {
+    public function get_image($code, $theme = "default", $language = "plain")
+    {
         // Check if the theme and language are valid
         if (!in_array($theme, $this->valid_themes)) {
             throw new InvalidArgumentException("Invalid theme provided");
@@ -56,7 +58,7 @@ class Code2ImgAPI {
             throw new InvalidArgumentException("Invalid language provided");
         }
 
-        $url = $this->base_url . "?theme=" . urlencode($theme) . "&language=" . urlencode($language);
+        $url = $this->base_url . "?theme=" . urlencode($theme) . "&language=" . urlencode($language) . "&show-background=false" . "&scale=1";
 
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
