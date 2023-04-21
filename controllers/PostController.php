@@ -1,8 +1,9 @@
 <?php
 
+namespace Controllers;
 use RedBeanPHP\R as R;
 
-require_once "../public/api/code2img.php";
+include "../public/api/code2img.php";
 
 class PostController extends BaseController
 {
@@ -10,7 +11,7 @@ class PostController extends BaseController
     public function show()
     {
         // Create a new instance of the Code2ImgAPI class
-        $api = new Code2ImgAPI();
+        $api = new \API\Code2ImgAPI();
 
         // check if id is set
         if (!isset($_GET['id'])) {

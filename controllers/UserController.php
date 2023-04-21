@@ -1,5 +1,6 @@
 <?php
 
+namespace Controllers;
 use RedBeanPHP\R as R;
 
 class UserController extends BaseController
@@ -92,7 +93,7 @@ class UserController extends BaseController
         $user->securityAnswer = $_POST['securityAnswer'];
         $user->bio = null;
         $user->profilePicture = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
-        $user->registeredAt = new DateTime('now');
+        $user->registeredAt = new \DateTime('now');
         R::store($user);
         // start session, set variable
         $_SESSION['loggedInUser'] = $user['id'];

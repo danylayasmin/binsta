@@ -18,14 +18,14 @@ session_start();
 // check controller, params -> default
 if (isset($_GET['controller'])) {
     $params = explode('/', $_GET['controller']);
-    $controllerName = ucfirst($params[0]) . 'Controller';
+    $controllerName = '\Controllers\\' . ucfirst($params[0]) . 'Controller';
     // check if controller exists
     if (!class_exists($controllerName)) {
         error(404, 'Controller \'' . ucfirst($params[0]) . 'Controller\' not found', '/');
     }
     // default controller
 } else {
-    $controllerName = "TestController";
+    $controllerName = "Controllers\TestController";
 }
 
 // check method -> default

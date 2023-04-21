@@ -1,5 +1,7 @@
 <?php
 
+namespace API;
+
 class Code2ImgAPI
 {
     
@@ -52,10 +54,10 @@ class Code2ImgAPI
     {
         // Check if the theme and language are valid
         if (!in_array($theme, $this->valid_themes)) {
-            throw new InvalidArgumentException("Invalid theme provided");
+            throw new \InvalidArgumentException("Invalid theme provided");
         }
         if (!in_array($language, $this->valid_languages)) {
-            throw new InvalidArgumentException("Invalid language provided");
+            throw new \InvalidArgumentException("Invalid language provided");
         }
 
         $url = $this->base_url . "?theme=" . urlencode($theme) . "&language=" . urlencode($language) . "&show-background=false" . "&scale=1";
@@ -70,7 +72,7 @@ class Code2ImgAPI
         // Check if the request was successful
         $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         if ($http_code != 200) {
-            throw new Exception("Request failed with HTTP code " . $http_code);
+            throw new \Exception("Request failed with HTTP code " . $http_code);
         }
 
         curl_close($ch);

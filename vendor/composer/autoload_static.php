@@ -10,11 +10,6 @@ class ComposerStaticInit0fc556804440094cdc3deff907a8aea2
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '2dcc1fe700145c8f64875eb0ae323e56' => __DIR__ . '/../..' . '/helpers.php',
-        '6af0efc6fde393e57db57e95e9151f72' => __DIR__ . '/../..' . '/controllers/BaseController.php',
-        'f143c32355f939df3cf07c3c2b3e5928' => __DIR__ . '/../..' . '/controllers/UserController.php',
-        'b299b19a553ba9dc2bead52fea37aab1' => __DIR__ . '/../..' . '/controllers/ProfileController.php',
-        'd37cab07e9ad072b52d828334a6ffa0a' => __DIR__ . '/../..' . '/controllers/TestController.php',
-        '382801e60e9556a2795018dd137cd79a' => __DIR__ . '/../..' . '/controllers/PostController.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -30,6 +25,14 @@ class ComposerStaticInit0fc556804440094cdc3deff907a8aea2
         'R' => 
         array (
             'RedBeanPHP\\' => 11,
+        ),
+        'C' => 
+        array (
+            'Controllers\\' => 12,
+        ),
+        'A' => 
+        array (
+            'API\\' => 4,
         ),
     );
 
@@ -49,6 +52,14 @@ class ComposerStaticInit0fc556804440094cdc3deff907a8aea2
         'RedBeanPHP\\' => 
         array (
             0 => __DIR__ . '/..' . '/gabordemooij/redbean/RedBeanPHP',
+        ),
+        'Controllers\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/controllers',
+        ),
+        'API\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/public/api',
         ),
     );
 

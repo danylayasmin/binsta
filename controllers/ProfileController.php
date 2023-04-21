@@ -1,5 +1,6 @@
 <?php
 
+namespace Controllers;
 use RedBeanPHP\R as R;
 
 class ProfileController extends BaseController

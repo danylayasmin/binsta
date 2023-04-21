@@ -9,9 +9,4 @@ return array(
     '320cde22f66dd4f5d3fd621d3e88b98f' => $vendorDir . '/symfony/polyfill-ctype/bootstrap.php',
     '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => $vendorDir . '/symfony/polyfill-mbstring/bootstrap.php',
     '2dcc1fe700145c8f64875eb0ae323e56' => $baseDir . '/helpers.php',
-    '6af0efc6fde393e57db57e95e9151f72' => $baseDir . '/controllers/BaseController.php',
-    'f143c32355f939df3cf07c3c2b3e5928' => $baseDir . '/controllers/UserController.php',
-    'b299b19a553ba9dc2bead52fea37aab1' => $baseDir . '/controllers/ProfileController.php',
-    'd37cab07e9ad072b52d828334a6ffa0a' => $baseDir . '/controllers/TestController.php',
-    '382801e60e9556a2795018dd137cd79a' => $baseDir . '/controllers/PostController.php',
 );
