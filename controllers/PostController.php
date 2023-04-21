@@ -2,6 +2,8 @@
 
 use RedBeanPHP\R as R;
 
+require_once "../public/api/code2img.php";
+
 class PostController extends BaseController
 {
     public function index()
@@ -24,5 +26,28 @@ class PostController extends BaseController
         );
         
         displayTemplate('post/create.twig', $const);
+    }
+    
+    // store new post in database
+    public function createPost()
+    {
+        // Create a new instance of the Code2ImgAPI class
+        $api = new Code2ImgAPI();
+
+        $code = $_POST['code'];
+        $theme = $_POST['theme'];
+        $language = $_POST['language'];
+
+        // Call the get_image method to get the image bytes
+        try {
+            $image_bytes = $api->get_image($code, $theme, $language);
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage();
+            exit();
+        }
+
+        // Output the image to the browser
+        header('Content-Type: image/png');
+        echo $image_bytes;
     }
 }
