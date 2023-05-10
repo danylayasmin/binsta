@@ -35,31 +35,13 @@ class ProfileController extends BaseController
         // retrieve user
         $user = $this->getBeanById('user', $_SESSION['loggedInUser']);
 
-        // check if username is set
-        if (isset($_POST['username'])) {
-            $user->username = $_POST['username'];
-        }
+        $user->username = $_POST['username'];
+        $user->displayName = $_POST['displayName'];
+        $user->email = $_POST['email'];
+        $user->profilePicture = $_POST['profilePicture'];
+        $user->bio = $_POST['bio'];
+        $user->updatedAt = new \DateTime('now');
         
-        // check if display name is set
-        if (isset($_POST['displayName'])) {
-            $user->displayName = $_POST['displayName'];
-        }
-        
-        // check if email is set
-        if (isset($_POST['email'])) {
-            $user->email = $_POST['email'];
-        }
-        
-        // check if profile picture is set
-        if (isset($_POST['profilePicture'])) {
-            $user->profilePicture = $_POST['profilePicture'];
-        }
-        
-        // check if bio is set
-        if (isset($_POST['bio'])) {
-            $user->bio = $_POST['bio'];
-        }
-
         // store user
         R::store($user);
 
