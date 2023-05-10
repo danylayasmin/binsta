@@ -31,6 +31,7 @@ foreach ($gebruikers as $gebruiker) {
     $user->bio = null;
     $user->profilePicture = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
     $user->registeredAt = $gebruiker['registeredAt'];
+    $user->updatedAt = null;
     R::store($user);
 }
 print(R::count('user') . " users inserted" . PHP_EOL);

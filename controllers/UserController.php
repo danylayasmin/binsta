@@ -94,6 +94,7 @@ class UserController extends BaseController
         $user->bio = null;
         $user->profilePicture = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
         $user->registeredAt = new \DateTime('now');
+        $user->updatedAt = null;
         R::store($user);
         // start session, set variable
         $_SESSION['loggedInUser'] = $user['id'];
@@ -163,6 +164,7 @@ class UserController extends BaseController
 
         // change password
         $user->password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $user->updatedAt = new \DateTime('now');
         R::store($user);
 
         // end session
