@@ -35,3 +35,22 @@ foreach ($gebruikers as $gebruiker) {
     R::store($user);
 }
 print(R::count('user') . " users inserted" . PHP_EOL);
+
+//create post
+$berichten = [
+    ['code' => '<?php echo "Hello World"; ?>',
+    'caption' => 'First code post',
+    'theme' => 'default',
+    'language' => 'php']
+];
+
+//insert post
+foreach ($berichten as $bericht) {
+    $post = R::dispense('post');
+    $post->code = $bericht['code'];
+    $post->caption = $bericht['caption'];
+    $post->theme = $bericht['theme'];
+    $post->language = $bericht['language'];
+    R::store($post);
+}
+print(R::count('post') . " posts inserted" . PHP_EOL);
