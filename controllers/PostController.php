@@ -46,7 +46,7 @@ class PostController extends BaseController
             'post' => $post,
             'image_bytes' => $image_bytes,
             'id' => $_GET['id'],
-            'user'  => $post->user,
+            'user' => $post->user
         ];
         displayTemplate('post/show.twig', $data);
     }
