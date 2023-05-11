@@ -41,7 +41,8 @@ $berichten = [
     ['code' => '<?php echo "Hello World"; ?>',
     'caption' => 'First code post',
     'theme' => 'default',
-    'language' => 'php']
+    'language' => 'php',
+    'user_id' => 1]
 ];
 
 //insert post
@@ -51,6 +52,7 @@ foreach ($berichten as $bericht) {
     $post->caption = $bericht['caption'];
     $post->theme = $bericht['theme'];
     $post->language = $bericht['language'];
+    $post->user_id = $bericht['user_id'];
     R::store($post);
 }
 print(R::count('post') . " posts inserted" . PHP_EOL);
