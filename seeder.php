@@ -17,6 +17,12 @@ $gebruikers = [
     'email' => 'john@doe.nl',
     'password' => password_hash('doe123', PASSWORD_BCRYPT),
     'securityAnswer' => 'answer 1',
+    'registeredAt' => new DateTime('now')],
+    ['username' => 'jane',
+    'displayName' => 'Jane Doe',
+    'email' => 'jane@doe.nl',
+    'password' => password_hash('doe123', PASSWORD_BCRYPT),
+    'securityAnswer' => 'answer 2',
     'registeredAt' => new DateTime('now')]
 ];
 
@@ -42,7 +48,22 @@ $berichten = [
     'caption' => 'First code post',
     'theme' => 'default',
     'language' => 'php',
-    'user_id' => 1]
+    'user_id' => 1],
+    ['code' => 'console.log("Hello World");',
+    'caption' => 'First code post',
+    'theme' => 'shades-of-purple',
+    'language' => 'javascript',
+    'user_id' => 2],
+    ['code' => 'print("Hello World")',
+    'caption' => 'Second code post',
+    'theme' => 'duotone-sea',
+    'language' => 'python',
+    'user_id' => 1],
+    ['code' => 'echo "Hello World";',
+    'caption' => 'Second code post',
+    'theme' => 'material-oceanic',
+    'language' => 'php',
+    'user_id' => 2]
 ];
 
 //insert post
