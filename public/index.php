@@ -6,7 +6,7 @@ use RedBeanPHP\R as R;
 
 require_once '../vendor/autoload.php';
 //connect to database
-R::setup('mysql:host=localhost;dbname=db', 'user', 'password');
+R::setup('mysql:host=localhost;dbname=binsta', 'bit_academy', 'bit_academy');
 
 // template loader
 $loader = new \Twig\Loader\FilesystemLoader('../views');
