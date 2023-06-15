@@ -11,40 +11,44 @@ class PostController extends BaseController
     public function show()
     {
         // Create a new instance of the Code2ImgAPI class
-        $api = new \API\Code2ImgAPI();
+        // $api = new \API\Code2ImgAPI();
+
+        $posts = R::getAll('SELECT * from post');
 
         // check if id is set
         if (!isset($_GET['id'])) {
-            error(404, 'No ID provided', '/test/welcome');
-            exit;
-        }
-        
-        // check if id post exists
-        $post = $this->getBeanById('post', $_GET['id']);
-        if (!isset($post)) {
-            error(404, 'Post not found with ID ' . $_GET['id'], '/test/welcome');
-            exit;
+        error(404, 'No ID provided', '/test/welcome');
+        exit;
         }
 
-        $code = $post->code;
-        $theme = $post->theme;
-        $language = $post->language;
+        foreach ($posts as $post) {
+            $code = $post['code'];
+            $theme = $post['theme'];
+            $language = $post['language'];
 
-        // Call the get_image method to get the image bytes
-        if (!isset($code) || !isset($theme) || !isset($language)) {
-            error(404, 'Post not found', '/test/welcome');
-            exit;
-        } else {
-            $image_bytes = $api->get_image($code, $theme, $language);
+             // check if id post exists
+            $post = $this->getBeanById('post', $_GET['id']);
+            if (!isset($post)) {
+                error(404, 'Post not found with ID ' . $_GET['id'], '/test/welcome');
+                exit;
+            }
+
+            // Call the get_image method to get the image bytes
+            if (!isset($code) || !isset($theme) || !isset($language)) {
+                error(404, 'Post not found', '/test/welcome');
+                exit;
+            }
+            // else {
+            //     $image_bytes = $api->get_image($code, $theme, $language);
+            // }
+
+            // // image_bytes to base64
+            // $image_bytes = base64_encode($image_bytes);
         }
-
-        // image_bytes to base64
-        $image_bytes = base64_encode($image_bytes);
-        
         // get data for template
         $data = [
             'post' => $post,
-            'image_bytes' => $image_bytes,
+            // 'image_bytes' => $image_bytes,
             'id' => $_GET['id'],
             'user' => $post->user
         ];

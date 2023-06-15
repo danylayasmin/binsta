@@ -11,7 +11,7 @@ class TestController extends BaseController
     public function welcome()
     {
         // Create a new instance of the Code2ImgAPI class
-        $api = new \API\Code2ImgAPI();
+        // $api = new \API\Code2ImgAPI();
 
         $posts = R::getAll('SELECT * from post');
 
@@ -25,17 +25,18 @@ class TestController extends BaseController
             if (!isset($code) || !isset($theme) || !isset($language)) {
                 error(404, 'Post not found', '/test/welcome');
                 exit;
-            } else {
-                $image_bytes = $api->get_image($code, $theme, $language);
-            }
+            } 
+            // else {
+            //     // $image_bytes = $api->get_image($code, $theme, $language);
+            // }
 
-            // image_bytes to base64
-            $image_bytes = base64_encode($image_bytes);
+            // // image_bytes to base64
+            // $image_bytes = base64_encode($image_bytes);
 
             $user = R::load('user', $post['user_id']);
             $postData[] = [
                 'post' => $post,
-                'image_bytes' => $image_bytes,
+                // 'image_bytes' => $image_bytes,
                 'id' => $post['id'],
                 'user' => $user,
             ];
@@ -48,5 +49,19 @@ class TestController extends BaseController
         ];
         
         displayTemplate('welcome.twig', $data);
+    }
+
+    public function getImage()
+    {
+        // Create a new instance of the Code2ImgAPI class
+        $api = new \API\Code2ImgAPI();
+
+        $postid = $_GET['id'];
+
+        $post = R::load('post', $postid);
+
+        $image_bytes = $api->get_image($post->code, $post->theme, $post->language);
+
+        return base64_encode($image_bytes);;
     }
 }
