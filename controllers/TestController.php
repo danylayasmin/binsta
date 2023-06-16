@@ -64,4 +64,17 @@ class TestController extends BaseController
 
         return base64_encode($image_bytes);;
     }
+
+    public function searchPost()
+    {
+        $query = $_POST['query'];
+
+        $users = R::find('user', 'username LIKE ? OR display_name LIKE ?', ["%$query%", "%$query%"]);
+
+        $data = [
+            'users' => $users,
+        ];
+
+        displayTemplate('search.twig', $data);
+    }
 }
