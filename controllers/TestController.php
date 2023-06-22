@@ -77,4 +77,14 @@ class TestController extends BaseController
 
         displayTemplate('search.twig', $data);
     }
+
+    public function likePost()
+    {
+        $postId = $_POST['postId'];
+
+        $response = ['success' => true];
+        header('Content-Type: application/json');
+        echo json_encode($response);
+    }
+
 }
