@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/github-dark.min.css">
+    <script src="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/highlight.min.js"></script>
+
+    <script>hljs.highlightAll();</script>
+</head>
+
+<body class="transition-all duration-150">
+    <div class="flex h-screen bg-gray-300 text-black">
+        <aside class="w-64 hidden md:flex md:flex-col h-screen px-4 py-8 bg-gray-100 rounded-3xl shadow-sm">
+            <h1 class="text-3xl font-bold mb-10 text-black">
+                Binsta
+            </h1>
+            <nav class="flex flex-col space-y-4 w-full"><a class="flex items-center space-x-2 text-black" href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg><span>
+                        Home
+                    </span></a></a><a class="flex items-center space-x-2 text-black" href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6">
+                        <path d="m21 21-6-6m6 6v-4.8m0 4.8h-4.8"></path>
+                        <path d="M3 16.2V21m0 0h4.8M3 21l6-6"></path>
+                        <path d="M21 7.8V3m0 0h-4.8M21 3l-6 6"></path>
+                        <path d="M3 7.8V3m0 0h4.8M3 3l6 6"></path>
+                    </svg><span>
+                        Explore
+                    </span></a></a></a><a class="flex items-center space-x-2 text-black" href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg><span>
+                        Create
+                    </span></a><a class="flex items-center space-x-2 text-black" href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg><span>
+                        Profile
+                    </span></a><a class="flex items-center space-x-2 mt-10 text-black" href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="19" cy="12" r="1"></circle>
+                        <circle cx="5" cy="12" r="1"></circle>
+                    </svg><span>
+                        Settings
+                    </span></a></nav>
+        </aside>
+        <main class="flex-1 overflow-y-auto bg-gray-300">
+            <div class="max-w-sm md:max-w-lg lg:max-w-4xl mx-auto">
+                <article class="bg-white my-7 rounded-lg overflow-hidden text-black shadow-md">
+                    <header class="flex items-center justify-between p-4 border-b border-gray-200">
+                        <div class="flex items-center space-x-3">
+                            <span class="font-semibold text-sm">i_am_binsta</span>
+                        </div>
+
+                    </header>
+                    <div class="w-full bg-gray-300">
+                        <pre><code class="language-go">func ReverseString(s string) string {
+    r := []rune(s)
+    for i, j := 0, len(r)-1; i < j; i, j = i+1, j-1 {
+        r[i], r[j] = r[j], r[i]
+    }
+
+    return string(r)
+}</code></pre>
+                    </div>
+                    <footer class="p-4">
+                        <div class="flex space-x-4 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-6 h-6">
+                                <path
+                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="mb-2">
+                            <span class="font-semibold">12345 likes</span>
+                        </div>
+                        <div>
+                            <span class="font-semibold">i_am_binsta</span>
+                            <span> just a snippet of a Go function... </span>
+                        </div>
+                        <div class="mt-2">
+                            <a class="text-gray-500 text-sm" href="#">
+                                View all 6 comments
+                            </a>
+                        </div>
+                        <div class="mt-2">
+                            <form>
+                                <input
+                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    placeholder="Add a comment..." />
+                            </form>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+
+            <!-- START OF DIFFERENT CARDS -->
+            <div class="max-w-sm md:max-w-lg lg:max-w-4xl mx-auto">
+                <article class="bg-white my-7 rounded-lg overflow-hidden text-black shadow-md">
+                    <header class="flex items-center justify-between p-4 border-b border-gray-200">
+                        <div class="flex items-center space-x-3">
+                            <span class="font-semibold text-sm">i_am_binsta</span>
+                        </div>
+
+                    </header>
+                    <div class="w-full bg-gray-300">
+                        <pre><code class="language-cs">using System.IO.Compression;
+
+#pragma warning disable 414, 3021
+
+namespace MyApplication
+{
+    [Obsolete("...")]
+    class Program : IInterface
+    {
+        public static List<int> JustDoIt(int count)
+        {
+            Span<int> numbers = stackalloc int[length];
+            Console.WriteLine($"Hello {Name}!");
+            return new List<int>(new int[] { 1, 2, 3 })
+        }
+    }
+}</code></pre>
+                    </div>
+                    <footer class="p-4">
+                        <div class="flex space-x-4 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-6 h-6">
+                                <path
+                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="mb-2">
+                            <span class="font-semibold">12345 likes</span>
+                        </div>
+                        <div>
+                            <span class="font-semibold">i_am_binsta</span>
+                            <span> just a snippet of some CSharp... </span>
+                        </div>
+                        <div class="mt-2">
+                            <a class="text-gray-500 text-sm" href="#">
+                                View all 62 comments
+                            </a>
+                        </div>
+                        <div class="mt-2">
+                            <form>
+                                <input
+                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    placeholder="Add a comment..." />
+                            </form>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+
+            <div class="max-w-sm md:max-w-lg lg:max-w-4xl mx-auto">
+                <article class="bg-white my-7 rounded-lg overflow-hidden text-black shadow-md">
+                    <header class="flex items-center justify-between p-4 border-b border-gray-200">
+                        <div class="flex items-center space-x-3">
+                            <span class="font-semibold text-sm">i_am_binsta</span>
+                        </div>
+
+                    </header>
+                    <div class="w-full bg-gray-300">
+                        <pre><code class="language-sql">CREATE TABLE "topic" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "forum_id" integer NOT NULL,
+    "subject" varchar(255) NOT NULL
+);
+ALTER TABLE "topic"
+ADD CONSTRAINT forum_id FOREIGN KEY ("forum_id")
+REFERENCES "forum" ("id");
+
+-- Initials
+insert into "topic" ("forum_id", "subject")
+values (2, 'D''artagnian');</code></pre>
+                    </div>
+                    <footer class="p-4">
+                        <div class="flex space-x-4 mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" class="w-6 h-6">
+                                <path
+                                    d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="mb-2">
+                            <span class="font-semibold">12345 likes</span>
+                        </div>
+                        <div>
+                            <span class="font-semibold">i_am_binsta</span>
+                            <span> just a snippet of some SQL... </span>
+                        </div>
+                        <div class="mt-2">
+                            <a class="text-gray-500 text-sm" href="#">
+                                View all 2 comments
+                            </a>
+                        </div>
+                        <div class="mt-2">
+                            <form>
+                                <input
+                                    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                                    placeholder="Add a comment..." />
+                            </form>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

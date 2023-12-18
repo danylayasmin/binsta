@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="transition-all duration-150">
+    <div class="flex bg-gray-300 text-black">
+        <aside class="w-64 hidden md:flex md:flex-col h-screen px-4 py-8 bg-gray-100 rounded-3xl shadow-sm">
+            <h1 class="text-3xl font-bold mb-10 text-black">
+                Binsta
+            </h1>
+            <nav class="flex flex-col space-y-4 w-full"><a class="flex items-center space-x-2 text-black" href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg><span>
+                        Home
+                    </span></a></a><a class="flex items-center space-x-2 text-black" href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6">
+                        <path d="m21 21-6-6m6 6v-4.8m0 4.8h-4.8"></path>
+                        <path d="M3 16.2V21m0 0h4.8M3 21l6-6"></path>
+                        <path d="M21 7.8V3m0 0h-4.8M21 3l-6 6"></path>
+                        <path d="M3 7.8V3m0 0h4.8M3 3l6 6"></path>
+                    </svg><span>
+                        Explore
+                    </span></a></a></a><a class="flex items-center space-x-2 text-black" href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg><span>
+                        Create
+                    </span></a><a class="flex items-center space-x-2 text-black" href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6">
+                        <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg><span>
+                        Profile
+                    </span></a><a class="flex items-center space-x-2 mt-10 text-black" href="#"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="w-6 h-6">
+                        <circle cx="12" cy="12" r="1"></circle>
+                        <circle cx="19" cy="12" r="1"></circle>
+                        <circle cx="5" cy="12" r="1"></circle>
+                    </svg><span>
+                        Settings
+                    </span></a></nav>
+        </aside>
+        <main class="flex-1 overflow-y-auto bg-gray-300 h-screen">
+            <div class="flex h-screen">
+                <div class="m-auto items-center">
+                    <div class="py-6 px-6 bg-white w-[30rem] lg:w-[60rem] rounded-2xl ">
+                        <form>
+                            <div class="mb-4">
+                                <label for="codingLanguage" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Select Language
+                                </label>
+                                <select id="codingLanguage" class="w-full border rounded-lg p-2 bg-gray-100">
+                                    <option value="javascript">JavaScript</option>
+                                    <option value="python">Python</option>
+                                    <option value="java">Java</option>
+                                    <option value="csharp">C#</option>
+                                    <option value="php">PHP</option>
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="snippetContent" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Snippet
+                                </label>
+                                <textarea id="snippetContent" placeholder="Enter your code snippet here..."
+                                    class="w-full h-64 p-2 border rounded-lg bg-gray-100 resize-none"></textarea>
+                            </div>
+                            <div class="mb-4">
+                                <label for="snippetCaption" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Caption
+                                </label>
+                                <input
+                                    class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full"
+                                    id="snippetCaption" placeholder="Enter a caption for your snippet" />
+                            </div>
+                            <button type="submit"
+                                class="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-black hover:bg-gray-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" class="w-4 h-4">
+                                    <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                                    <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                                    <polyline points="7 3 7 8 15 8"></polyline>
+                                </svg>
+                                <span class="ml-2">Create Snippet</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+        </main>
+    </div>
+</body>
+
+</html>
