@@ -54,6 +54,8 @@ class TestController extends BaseController
     public function likePost()
     {
         $postId = $_POST['postId'];
+        $userId = $_SESSION['loggedInUser']; // dit kunnen we dan opslaan in een array in db?
+        // en dan iets van ophalen wie heeft geliked, als t logged in user is dan ingekleurd ofzo
 
         $response = ['success' => true];
         header('Content-Type: application/json');
