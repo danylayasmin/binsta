@@ -60,8 +60,8 @@ class PostController extends BaseController
         $post = R::dispense('post');
         $post->code = $_POST['code'];
         $post->caption = $_POST['caption'];
-        $post->theme = $_POST['theme'];
         $post->language = $_POST['language'];
+        $post->likes = json_encode([]);
         $user = R::load('user', $_SESSION['loggedInUser']);
         $post->user = $user;
         R::store($post);

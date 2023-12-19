@@ -38,13 +38,16 @@
 		<div class="post">
 			<td>
 				<button class="like-button" data-post-id="{{ post.id }}">
-					<ion-icon name="heart-outline" class="w-6 h-6"></ion-icon>
+					{% if loggedInUser in post.likes %}
+						<ion-icon name="heart" class="w-6 h-6"></ion-icon>
+					{% else %}
+						<ion-icon name="heart-outline" class="w-6 h-6"></ion-icon>
+					{% endif %}
 				</button>
+				<span class="like-count" data-post-id="{{ post.id }}">{{ post.like_count }}</span>
 			</td>
-		</div>
+		</td>
 	</tr>
-	<tr>
-		<th>Caption</th>
-		<td>{{ post.post.caption }}</td>
-	</tr>
-</tbody></table>{% endfor %}{% else %}<p>Sign up or log in to get started</p>{% endif %}<script src="/js/likebtn.js"></script>{% endblock %}
+</div></tr><tr>
+<th>Caption</th>
+<td>{{ post.post.caption }}</td></tr></tbody></table>{% endfor %}{% else %}<p>Sign up or log in to get started</p>{% endif %}<script src="/js/likebtn.js"></script>{% endblock %}
