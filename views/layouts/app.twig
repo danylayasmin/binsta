@@ -6,11 +6,14 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.9.0/styles/default.min.css">
         <title>{% block title %}{% endblock %}- Binsta</title>
         {% endblock %}
     </head>
 
     <body>
+    <script>hljs.highlightAll();</script>
         {% block navbar %}
         <nav>
             <ul>
