@@ -3,16 +3,11 @@
 namespace Controllers;
 use RedBeanPHP\R as R;
 
-include "../public/api/code2img.php";
-
 class PostController extends BaseController
 {
     // show post with specified id
     public function show()
     {
-        // Create a new instance of the Code2ImgAPI class
-        // $api = new \API\Code2ImgAPI();
-
         $posts = R::getAll('SELECT * from post');
 
         // check if id is set
@@ -38,17 +33,10 @@ class PostController extends BaseController
                 error(404, 'Post not found', '/test/welcome');
                 exit;
             }
-            // else {
-            //     $image_bytes = $api->get_image($code, $theme, $language);
-            // }
-
-            // // image_bytes to base64
-            // $image_bytes = base64_encode($image_bytes);
         }
         // get data for template
         $data = [
             'post' => $post,
-            // 'image_bytes' => $image_bytes,
             'id' => $_GET['id'],
             'user' => $post->user
         ];
