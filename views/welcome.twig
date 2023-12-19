@@ -23,8 +23,7 @@
         {% endif %}
             <tr>
                 <th>Code</th>
-                <td><img src="/img/placeholder.png" alt="code img" height="100px" class="post-image" postId="{{ post.id }}"></td>
-                {# <td><img src="data:image/png;base64,{{ post.image_bytes }}" alt="code img" height="100px"></td> #}
+                <td><pre class="theme-{{ theme }}"><code class="language-{{ language }}" postId="{{ post.id }}">{{ code}}</code></pre></td>
             </tr>
             <tr>
                 <div class="post">

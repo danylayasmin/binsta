@@ -14,19 +14,15 @@ class TestController extends BaseController
             $code = $post['code'];
             $theme = $post['theme'];
             $language = $post['language'];
-        
-
-            // Call the get_image method to get the image bytes
-            if (!isset($code) || !isset($theme) || !isset($language)) {
-                error(404, 'Post not found', '/test/welcome');
-                exit;
-            } 
 
             $user = R::load('user', $post['user_id']);
             $postData[] = [
                 'post' => $post,
                 'id' => $post['id'],
                 'user' => $user,
+                'code' => $code,
+                'theme' => $theme,
+                'language' => $language,
             ];
         }
         

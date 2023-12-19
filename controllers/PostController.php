@@ -27,18 +27,15 @@ class PostController extends BaseController
                 error(404, 'Post not found with ID ' . $_GET['id'], '/test/welcome');
                 exit;
             }
-
-            // Call the get_image method to get the image bytes
-            if (!isset($code) || !isset($theme) || !isset($language)) {
-                error(404, 'Post not found', '/test/welcome');
-                exit;
-            }
         }
         // get data for template
         $data = [
             'post' => $post,
             'id' => $_GET['id'],
-            'user' => $post->user
+            'user' => $post->user,
+            'code' => $code,
+            'theme' => $theme,
+            'language' => $language,
         ];
         displayTemplate('post/show.twig', $data);
     }
