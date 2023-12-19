@@ -51,11 +51,12 @@ class PostController extends BaseController
         
         // get data for template
         $const = array(
-            'themes' => ['a11y-dark', 'atom-dark', 'base16-ateliersulphurpool.light', 'cb', 'darcula', 'default',
-            'dracula', 'duotone-dark', 'duotone-earth', 'duotone-forest', 'duotone-light', 'duotone-sea', 'duotone-space',
-            'ghcolors', 'hopscotch', 'material-dark', 'material-light', 'material-oceanic', 'nord', 'pojoaque', 'shades-of-purple',
-            'synthwave84', 'vs', 'vsc-dark-plus', 'xonokai'],
-            'languages' => ['c', 'css', 'cpp', 'go', 'html', 'java', 'javascript', 'jsx', 'php', 'python', 'rust', 'typescript']
+            'themes' =>['a11y-dark', 'atom-one-dark', 'an-hold-hope', 'base16-apathy', 'base16-atelier-cave', 'devibeans', 'far', 'felipec', 'github-dark', 'gradient-dark', 'gradient-light',
+            'ir-black', 'night-owl', 'nord', 'paraiso-dark', 'rainbow', 'shades-of-purple', 'srcery', 'tokyo-night-dark', 'base16-decaf', 'base16-outrun-dark'],
+            'languages' => ['arduino', 'apache', 'autohotkey', 'bash', 'sh', 'zsh', 'brainfuck', 'csharp', 'c', 'cpp', 'hpp', 'cmake', 'css', 'crystal', 'elixir', 'erlang', 
+            'go', 'gradle', 'graphql', 'groovy', 'html', 'xhtml', 'http', 'https', 'handlebars', 'haskell', 'haxe', 'hlsl', 'ini', 'toml', 'json', 'java', 'javascript', 'jsx',
+            'julia', 'less', 'lisp', 'lua', 'makefile', 'markdown', 'moonscript', 'nginx', 'nim', 'nix', 'ocaml', 'monkey', 'php', 'perl', 'postgresql', 'powershell', 'python',
+            'ruby', 'rust', 'scss', 'sql', 'scala', 'shell', 'swift', 'twig', 'craftcms', 'typescript', 'tsx', 'vbnet', 'vbs', 'vim', 'x86asm', 'yaml', 'yml', 'zephir']
         );
         
         displayTemplate('post/create.twig', $const);
