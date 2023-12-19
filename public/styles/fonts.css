@@ -1,0 +1,16 @@
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+/* Import JetBrains Mono font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+/* Apply Inter font to regular text */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Apply JetBrains Mono to monospaced text */
+pre,
+code {
+    font-family: 'JetBrains Mono', monospace;
+}

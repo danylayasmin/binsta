@@ -1,6 +1,7 @@
 <?php
 
 namespace Controllers;
+
 use RedBeanPHP\R as R;
 
 class PostController extends BaseController
@@ -12,8 +13,8 @@ class PostController extends BaseController
 
         // check if id is set
         if (!isset($_GET['id'])) {
-        error(404, 'No ID provided', '/test/welcome');
-        exit;
+            error(404, 'No ID provided', '/test/welcome');
+            exit;
         }
 
         foreach ($posts as $post) {
@@ -21,7 +22,7 @@ class PostController extends BaseController
             $theme = $post['theme'];
             $language = $post['language'];
 
-             // check if id post exists
+            // check if id post exists
             $post = $this->getBeanById('post', $_GET['id']);
             if (!isset($post)) {
                 error(404, 'Post not found with ID ' . $_GET['id'], '/test/welcome');
@@ -39,26 +40,19 @@ class PostController extends BaseController
         ];
         displayTemplate('post/show.twig', $data);
     }
-    
+
     // create new post
     public function create()
     {
         // check if user is logged in
         $this->authorizeUser();
-        
+
         // get data for template
-        $const = array(
-            'themes' =>['a11y-dark', 'atom-one-dark', 'an-hold-hope', 'base16-apathy', 'base16-atelier-cave', 'devibeans', 'far', 'felipec', 'github-dark', 'gradient-dark', 'gradient-light',
-            'ir-black', 'night-owl', 'nord', 'paraiso-dark', 'rainbow', 'shades-of-purple', 'srcery', 'tokyo-night-dark', 'base16-decaf', 'base16-outrun-dark'],
-            'languages' => ['arduino', 'apache', 'autohotkey', 'bash', 'sh', 'zsh', 'brainfuck', 'csharp', 'c', 'cpp', 'hpp', 'cmake', 'css', 'crystal', 'elixir', 'erlang', 
-            'go', 'gradle', 'graphql', 'groovy', 'html', 'xhtml', 'http', 'https', 'handlebars', 'haskell', 'haxe', 'hlsl', 'ini', 'toml', 'json', 'java', 'javascript', 'jsx',
-            'julia', 'less', 'lisp', 'lua', 'makefile', 'markdown', 'moonscript', 'nginx', 'nim', 'nix', 'ocaml', 'monkey', 'php', 'perl', 'postgresql', 'powershell', 'python',
-            'ruby', 'rust', 'scss', 'sql', 'scala', 'shell', 'swift', 'twig', 'craftcms', 'typescript', 'tsx', 'vbnet', 'vbs', 'vim', 'x86asm', 'yaml', 'yml', 'zephir']
-        );
-        
-        displayTemplate('post/create.twig', $const);
+        $data = getHighlightJSData();
+
+        displayTemplate('post/create.twig', $data);
     }
-    
+
     // store new post in database
     public function createPost()
     {

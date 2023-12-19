@@ -1,6 +1,7 @@
 <?php
 
 namespace Controllers;
+
 use RedBeanPHP\R as R;
 
 class TestController extends BaseController
@@ -15,6 +16,7 @@ class TestController extends BaseController
             $theme = $post['theme'];
             $language = $post['language'];
 
+
             $user = R::load('user', $post['user_id']);
             $postData[] = [
                 'post' => $post,
@@ -25,13 +27,14 @@ class TestController extends BaseController
                 'language' => $language,
             ];
         }
-        
+
         // get data for template
         $data = [
             'posts' => $postData,
             'project_name' => 'Binsta',
+
         ];
-        
+
         displayTemplate('welcome.twig', $data);
     }
 
@@ -56,5 +59,4 @@ class TestController extends BaseController
         header('Content-Type: application/json');
         echo json_encode($response);
     }
-
 }

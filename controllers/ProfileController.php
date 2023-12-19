@@ -1,6 +1,7 @@
 <?php
 
 namespace Controllers;
+
 use RedBeanPHP\R as R;
 
 class ProfileController extends BaseController
@@ -14,10 +15,15 @@ class ProfileController extends BaseController
         // Get all posts for the logged-in user
         $posts = R::getAll('SELECT * FROM post WHERE user_id = ?', [$_SESSION['loggedInUser']]);
 
+        $highlightJSData = getHighlightJSData();
+        $currentTheme = retrieveThemeCookie();
+
         // Get data for the template
         $data = [
             'posts' => $posts,
-            'user' => $user
+            'user' => $user,
+            'highlightJSData' => $highlightJSData,
+            'currentTheme' => $currentTheme,
         ];
 
         displayTemplate('profile/me.twig', $data);
@@ -47,7 +53,7 @@ class ProfileController extends BaseController
         $user->profilePicture = $_POST['profilePicture'];
         $user->bio = $_POST['bio'];
         $user->updatedAt = new \DateTime('now');
-        
+
         // store user
         R::store($user);
 
@@ -81,5 +87,17 @@ class ProfileController extends BaseController
         ];
 
         displayTemplate('profile/show.twig', $data);
+    }
+
+    public function themePost()
+    {
+        if (!isset($_POST['theme'])) {
+            error(404, 'No theme provided', '/profile/me');
+            exit;
+        }
+
+        setcookie('theme', $_POST['theme'], 0, '/');
+
+        header("Location: /profile/me");
     }
 }

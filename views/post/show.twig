@@ -1,19 +1,22 @@
 {% extends "./layouts/app.twig" %}
 {% block title %}
-    Post {{ user.username }}
+	Post
+	{{ user.username }}
 {% endblock %}
 {% block content %}
-<h2>Your post</h2>
-<table>
-    <tbody>
-        <tr>
-            <th>Code</th>
-            <td><pre class="theme-{{ theme }}"><code class="language-{{ language }}" postId="{{ post.id }}">{{ code}}</code></pre></td>
-        </tr>
-        <tr>
-            <th>Caption</th>
-            <td>{{ post.caption }}</td>
-        </tr>
-    </tbody>
-</table>
+	<h2>Your post</h2>
+	<table>
+		<tbody>
+			<tr>
+				<th>Code</th>
+				<td>
+					<pre class="theme-{{ app.request.cookies.get('theme') }}"><code class="language-{{ language }}" postId="{{ post.id }}">{{ code}}</code></pre>
+				</td>
+			</tr>
+			<tr>
+				<th>Caption</th>
+				<td>{{ post.caption }}</td>
+			</tr>
+		</tbody>
+	</table>
 {% endblock %}
