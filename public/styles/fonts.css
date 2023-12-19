@@ -6,11 +6,11 @@
 
 /* Apply Inter font to regular text */
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif !important;
 }
 
 /* Apply JetBrains Mono to monospaced text */
 pre,
 code {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', monospace !important;
 }
