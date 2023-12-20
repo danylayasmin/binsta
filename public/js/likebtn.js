@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
         var xhr = new XMLHttpRequest();
         var button = document.querySelector('.like-button[data-post-id="' + postId + '"]');
         var likeCount = document.querySelector('.like-count[data-post-id="' + postId + '"]');
-        xhr.open('POST', '/test/like', true);
+        xhr.open('POST', '/home/like', true);
         xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xhr.onreadystatechange = function () {
             if (xhr.readyState === XMLHttpRequest.DONE) {

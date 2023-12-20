@@ -13,7 +13,7 @@ class PostController extends BaseController
 
         // check if id is set
         if (!isset($_GET['id'])) {
-            error(404, 'No ID provided', '/test/welcome');
+            error(404, 'No ID provided', '/home/welcome');
             exit;
         }
 
@@ -25,7 +25,7 @@ class PostController extends BaseController
             // check if id post exists
             $post = $this->getBeanById('post', $_GET['id']);
             if (!isset($post)) {
-                error(404, 'Post not found with ID ' . $_GET['id'], '/test/welcome');
+                error(404, 'Post not found with ID ' . $_GET['id'], '/home/welcome');
                 exit;
             }
         }

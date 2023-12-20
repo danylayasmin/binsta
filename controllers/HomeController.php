@@ -4,9 +4,8 @@ namespace Controllers;
 
 use RedBeanPHP\R as R;
 
-class TestController extends BaseController
+class HomeController extends BaseController
 {
-    // test page
     public function welcome()
     {
         $posts = R::getAll('SELECT * from post');

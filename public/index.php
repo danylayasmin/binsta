@@ -30,7 +30,7 @@ if (isset($_GET['controller'])) {
     }
     // default controller
 } else {
-    $controllerName = "Controllers\TestController";
+    $controllerName = "Controllers\HomeController";
 }
 
 // check method -> default
