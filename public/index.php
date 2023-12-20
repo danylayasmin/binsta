@@ -5,8 +5,24 @@ use Twig\Loader\FilesystemLoader;
 use RedBeanPHP\R as R;
 
 require_once '../vendor/autoload.php';
-//connect to database
-R::setup('mysql:host=localhost;dbname=binsta', 'root', '');
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
+
+$dbHost = $_ENV['DB_HOST'] ?? '';
+$dbName = $_ENV['DB_NAME'] ?? '';
+$dbUser = $_ENV['DB_USER'] ?? '';
+$dbPass = $_ENV['DB_PASSWORD'] ?? '';
+
+if (!empty($dbHost) && !empty($dbName) && !empty($dbUser) && !empty($dbPass)) {
+    try {
+        R::setup("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
+    } catch (Exception $e) {
+        echo "Connection failed: " . $e->getMessage();
+    }
+} else {
+    echo "Incomplete or missing environment secret(s).";
+}
 
 // template loader
 $loader = new \Twig\Loader\FilesystemLoader('../views');
