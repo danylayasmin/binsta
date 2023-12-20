@@ -42,10 +42,12 @@
 						<header class="flex items-center justify-between p-4 border-b border-gray-200">
 							<div class="flex items-center space-x-3">
 								{% if post.user.id == loggedInUser %}
+									<img class="w-8 h-8 rounded-full" src="{{ post.user.profile_picture }}" alt="Profile picture of {{ post.user.username }}"/>
 									<a href="/profile/me">
 										<span class="font-semibold text-sm">{{ post.user.username }}</span>
 									</a>
 								{% else %}
+									<img class="w-8 h-8 rounded-full" src="{{ post.user.profile_picture }}" alt="Profile picture of {{ post.user.username }}"/>
 									<a href="/profile/show?id={{ post.user.id }}">
 										<span class="font-semibold text-sm">{{ post.user.username }}</span>
 									</a>
