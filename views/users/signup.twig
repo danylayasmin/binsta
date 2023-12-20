@@ -42,7 +42,7 @@
             <tr>
                 <th>Security question</th>
                 <td>
-                    <select name="securityQuestion">
+                    <select name="securityQuestion" required>
                         <option value="" selected disabled hidden>Choose a security question</option>
                         {% for securityQuestion in securityQuestions %}
                             <option value="{{ securityQuestion }}">{{ securityQuestion }}</option>
