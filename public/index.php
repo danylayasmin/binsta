@@ -6,7 +6,7 @@ use RedBeanPHP\R as R;
 
 require_once '../vendor/autoload.php';
 //connect to database
-R::setup('mysql:host=localhost;dbname=db', 'username', 'password');
+R::setup('mysql:host=localhost;dbname=binsta', 'root', '');
 
 // template loader
 $loader = new \Twig\Loader\FilesystemLoader('../views');
@@ -14,6 +14,11 @@ $twig = new \Twig\Environment($loader);
 
 // start session
 session_start();
+
+$highlightJSData = getHighlightJSData();
+// Check if a cookie called 'theme' exists
+retrieveThemeCookie();
+
 
 // check controller, params -> default
 if (isset($_GET['controller'])) {
@@ -25,7 +30,7 @@ if (isset($_GET['controller'])) {
     }
     // default controller
 } else {
-    $controllerName = "Controllers\TestController";
+    $controllerName = "Controllers\HomeController";
 }
 
 // check method -> default

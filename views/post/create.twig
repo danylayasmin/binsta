@@ -3,42 +3,33 @@
 	Create post
 {% endblock %}
 {% block content %}
-<h2>Create a new post</h2>
-<form method="post" action="create">
-    <table>
-        <tbody>
-            <tr>
-                <th>Code</th>
-                <td><textarea name="code" required placeholder="Enter your code..." rows="10"></textarea></td>
-            </tr>
-            <tr>
-                <th>Caption</th>
-                <td><input type="text" name="caption" required placeholder="Write a caption..."/></td>
-            </tr>
-              <tr>
-                <th>Theme</th>
-                <td>
-                    <select name="theme" required>
-                        <option value="" selected disabled hidden>none chosen</option>
-                        {% for theme in themes %}
-                            <option value="{{ theme }}">{{ theme }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Language</th>
-                <td>
-                    <select name="language" required>
-                        <option value="" selected disabled hidden>none chosen</option>
-                        {% for language in languages %}
-                            <option value="{{ language }}">{{ language }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <input type="submit" value="Create post"/>
-</form>
+	<h2>Create a new post</h2>
+	<form method="post" action="create">
+		<table>
+			<tbody>
+				<tr>
+					<th>Code</th>
+					<td>
+						<textarea name="code" required placeholder="Enter your code..." rows="10"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<th>Caption</th>
+					<td><input type="text" name="caption" required placeholder="Write a caption..."/></td>
+				</tr>
+				<tr>
+					<th>Language</th>
+					<td>
+						<select name="language" required>
+							<option value="" selected disabled hidden>none chosen</option>
+							{% for language in languages %}
+								<option value="{{ language }}">{{ language }}</option>
+							{% endfor %}
+						</select>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<input type="submit" value="Create post"/>
+	</form>
 {% endblock %}

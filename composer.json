@@ -6,10 +6,6 @@
     "autoload": {
         "files": [
             "helpers.php"
-        ],
-        "psr-4": {
-            "API\\": "public/api/",
-            "Controllers\\": "controllers/"
-        }
+        ]
     }
 }

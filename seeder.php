@@ -5,25 +5,29 @@ include __DIR__ . '/vendor/autoload.php';
 use RedBeanPHP\R as R;
 
 //connect to database
-R::setup('mysql:host=localhost;dbname=binsta', 'bit_academy', 'bit_academy');
+R::setup('mysql:host=localhost;dbname=binsta', 'root', '');
 
 //empty tables
 R::nuke();
 
 //create user
 $gebruikers = [
-    ['username' => 'john',
-    'displayName' => 'John Doe',
-    'email' => 'john@doe.nl',
-    'password' => password_hash('doe123', PASSWORD_BCRYPT),
-    'securityAnswer' => 'answer 1',
-    'registeredAt' => new DateTime('now')],
-    ['username' => 'jane',
-    'displayName' => 'Jane Doe',
-    'email' => 'jane@doe.nl',
-    'password' => password_hash('doe123', PASSWORD_BCRYPT),
-    'securityAnswer' => 'answer 2',
-    'registeredAt' => new DateTime('now')]
+    [
+        'username' => 'john',
+        'displayName' => 'John Doe',
+        'email' => 'john@doe.nl',
+        'password' => password_hash('doe123', PASSWORD_BCRYPT),
+        'securityAnswer' => 'answer 1',
+        'registeredAt' => new DateTime('now')
+    ],
+    [
+        'username' => 'jane',
+        'displayName' => 'Jane Doe',
+        'email' => 'jane@doe.nl',
+        'password' => password_hash('doe123', PASSWORD_BCRYPT),
+        'securityAnswer' => 'answer 2',
+        'registeredAt' => new DateTime('now')
+    ]
 ];
 
 //insert user
@@ -44,26 +48,34 @@ print(R::count('user') . " users inserted" . PHP_EOL);
 
 //create post
 $berichten = [
-    ['code' => '<?php echo "Hello World"; ?>',
-    'caption' => 'First code post',
-    'theme' => 'default',
-    'language' => 'php',
-    'user_id' => 1],
-    ['code' => 'console.log("Hello World");',
-    'caption' => 'First code post',
-    'theme' => 'shades-of-purple',
-    'language' => 'javascript',
-    'user_id' => 2],
-    ['code' => 'print("Hello World")',
-    'caption' => 'Second code post',
-    'theme' => 'duotone-sea',
-    'language' => 'python',
-    'user_id' => 1],
-    ['code' => 'echo "Hello World";',
-    'caption' => 'Second code post',
-    'theme' => 'material-oceanic',
-    'language' => 'php',
-    'user_id' => 2]
+    [
+        'code' => '<?php echo "Hello World"; ?>',
+        'caption' => 'First code post',
+        'theme' => 'default',
+        'language' => 'php',
+        'user_id' => 1
+    ],
+    [
+        'code' => 'console.log("Hello World");',
+        'caption' => 'First code post',
+        'theme' => 'shades-of-purple',
+        'language' => 'javascript',
+        'user_id' => 2
+    ],
+    [
+        'code' => 'print("Hello World")',
+        'caption' => 'Second code post',
+        'theme' => 'duotone-sea',
+        'language' => 'python',
+        'user_id' => 1
+    ],
+    [
+        'code' => 'echo "Hello World";',
+        'caption' => 'Second code post',
+        'theme' => 'material-oceanic',
+        'language' => 'php',
+        'user_id' => 2
+    ]
 ];
 
 //insert post

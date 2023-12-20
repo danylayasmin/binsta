@@ -1,36 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        {% block head %}
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}{% endblock %}- Binsta</title>
-        {% endblock %}
-    </head>
+	<head>
+		{% block head %}
+			<meta charset="UTF-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1.0">
+			<link rel="stylesheet" href="/styles/fonts.css">
+			<script src="https://cdn.tailwindcss.com"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+			<script src="/js/highlight-loader.js"></script>
+			<title>
+				{% block title %}{% endblock %}- Binsta
+			</title>
+			<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧑‍💻</text></svg>">
+		{% endblock %}
+	</head>
 
-    <body>
-        {% block navbar %}
-        <nav>
-            <ul>
-                {% if loggedInUser %}
-                <li><a href="/user/logout">Log out</a></li>
-                {% else %}
-                <li><a href="/user/login">Log in</a></li>
-                <li><a href="/user/signup">Sign up</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-        {% endblock %}
-        <div id="content">
-        {% block content %}
-        {% endblock %}
-        </div>
-        <div id="footer">
-        {% block footer %}
-        {% endblock %}
-        </div>
-    </body>
+	<body>
 
-</html>
+		{% block navbar %}
+			<nav>
+				<ul>
+					{% if loggedInUser %}
+						<li>
+							<a href="/user/logout">
+								Log out</a>
+						</li>
+					{% else %}
+						<li>
+							<a href="/user/login">Log in</a>
+						</li>
+						<li>
+							<a href="/user/signup">Sign up</a>
+						</li>
+					{% endif %}
+				</ul>
+			</nav>
+		{% endblock %}
+		<div id="content"> {% block content %}{% endblock %}
+			</div>
+			<div id="footer"> {% block footer %}{% endblock %}
+				</div>
+				<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+				<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+			</body>
+
+		</html>
