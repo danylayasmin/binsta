@@ -54,7 +54,7 @@
 
 						</header>
 						<div class="w-full bg-gray-300">
-							<pre class="theme-{{ app.request.cookies.get('theme') }}"><code class="language-{{ post.language }}" postId="{{ post.id }}">{{post.code}}</code></pre>
+							<pre><code class="language-{{ post.language }}" postId="{{ post.id }}">{{post.code}}</code></pre>
 						</div>
 						<footer class="p-4" x-data="{showModal:false}">
 							<div class="mb-2 flex items-center leading-4">
