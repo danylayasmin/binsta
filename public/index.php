@@ -67,7 +67,7 @@ if (isset($params[1])) {
     }
     // default method
 } else {
-    $method = 'welcome';
+    $method = 'index';
 }
 
 // call controller + corresponding method

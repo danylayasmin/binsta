@@ -6,7 +6,16 @@ use RedBeanPHP\R as R;
 
 class HomeController extends BaseController
 {
-    public function welcome()
+    public function index()
+    {
+        if (isset($_SESSION['loggedInUser'])) {
+            header('Location: home/feed');
+        } else {
+            displayTemplate('index.twig');
+        }
+    }
+
+    public function feed()
     {
         $posts = R::getAll('SELECT * from post');
 
@@ -42,7 +51,7 @@ class HomeController extends BaseController
 
         ];
 
-        displayTemplate('welcome.twig', $data);
+        displayTemplate('feed.twig', $data);
     }
 
     public function searchPost()
