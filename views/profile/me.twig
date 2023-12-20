@@ -4,49 +4,94 @@
 {% endblock %}
 {% block navbar %}{% endblock %}
 {% block content %}
-	<a href="/">Go home</a>
+	<div class="flex h-screen bg-gray-300 text-black">
+		<aside class="w-64 hidden md:flex md:flex-col h-screen px-4 py-8 bg-gray-100 rounded-3xl shadow-sm">
+			<h1 class="text-3xl font-bold mb-10 text-black">
+				Binsta
+			</h1>
+			<nav class="flex flex-col space-y-4 w-full">
+				<a class="flex items-center space-x-2 text-black" href="/">
+					<ion-icon name="planet-outline" class="w-8 h-8"></ion-icon>
+					<span>
+						Home
+					</span>
+				</a>
+			</a>
+			<a class="flex items-center space-x-2 text-black" href="/post/create">
+				<ion-icon name="create-outline" class="w-8 h-8"></ion-icon>
+				<span>
+					Create
+				</span>
+			</a>
+			<a class="flex items-center space-x-2 text-black" href="/profile/me">
+				<ion-icon name="person-circle-outline" class="w-8 h-8"></ion-icon>
+				<span>
+					Profile
+				</span>
+			</a>
+			<a class="flex items-center space-x-2 text-black" href="/user/logout">
+				<ion-icon name="log-out-outline" class="w-8 h-8"></ion-icon>
+				<span>
+					Log out
+				</span>
+			</a>
+		</aside>
+		<main class="flex-1 overflow-y-auto bg-gray-300">
+			<div class="flex flex-col items-center p-6 max-w-4xl mx-auto bg-gray-100 rounded-3xl mt-12  m-auto">
+				<span class="relative flex shrink-0 overflow-hidden rounded-full h-24 w-24 mb-4 cursor-pointer">
+					<span class="flex h-full w-full items-center justify-center rounded-full bg-muted">
+						<img src="{{ user.profilePicture }}" alt="@{{ user.username }} avatar" class="h-full w-full object-cover">
+					</span>
+				</span>
+				<h1 class="text-2xl font-bold mb-1">{{ user.displayName }}</h1>
+				<h2 class="text-lg text-gray-500 dark:text-gray-400 mb-2">@{{ user.username }}</h2>
+				<div class="text-gray-500 dark:text-gray-400 mb-6">Registered:
+					{{ user.registeredAt|date("d F Y") }}</div>
+				<div class="text-gray-600 mb-6 mb-6">
+					{{ user.bio }}
+				</div>
 
-	<h2>{{ user.displayName }}</h2>
-	<h4>{{ user.username }}</h4>
-	<p>{{ user.email }}</p>
-	<img src="{{ user.profilePicture }}" alt="pfp" height="50px">
-	<table>
-		<tbody>
-			<tr>
-				<th>Registered at</th>
-				<td>{{ user.registeredAt }}</td>
-			</tr>
-			<tr>
-				<th>Biography</th>
-				<td>{{ user.bio }}</td>
-			</tr>
-		</tbody>
-	</table>
+				<div class="text-center mb-6">
+					Posts:
+					<div class="inline-flex items-center rounded-full border px-2.5 py-0.5 w-fit text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+						{{ posts|length }}
+					</div>
+				</div>
+				<div>
+					<form method="post" action="theme">
+						<label for="theme" class="text-center font-semibold">Theme:</label>
+						<select name="theme" required class="mt-1 rounded-md bg-neutral-300 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0">
+							<option value="{{currentTheme}}" selected hidden>{{currentTheme}}</option>
+							{% for theme in highlightJSData.themes %}
+								<option value="{{ theme }}">{{ theme }}</option>
+							{% endfor %}
+						</select><br>
+						<div class="flex flex-col">
+							<input type="submit" class="py-1 px-2 rounded-lg bg-emerald-400 hover:bg-emerald-300 hover:cursor-pointer mt-2 " value="Change theme">
+						</div>
+					</form>
+				</div>
+				<div class="w-full mt-8 border-t border-gray-300"></div>
+				<div>
+					<a href="/profile/edit" class="mt-6 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-neutral-900 hover:bg-neutral-800 h-10 px-4 py-2 text-white">
+						Edit Profile
+					</a>
+					<a href="/user/change" class="mt-6 inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-neutral-900 hover:bg-neutral-800 h-10 px-4 py-2 text-white">
+						Change Password
+					</a>
+				</div>
 
-	<div>
-		<form method="post" action="theme">
-			<label for="theme">Theme</label>
-			<select name="theme" required>
-				<option value="{{currentTheme}}" selected hidden>{{currentTheme}}</option>
-				{% for theme in highlightJSData.themes %}
-					<option value="{{ theme }}">{{ theme }}</option>
-				{% endfor %}
-			</select>
-			<input type="submit" value="Change theme"/>
-		</div>
-
-		<ul>
-			<li>
-				<a href="/user/change">Change password</a>
-			</li>
-			<li>
-				<a href="/profile/edit">Edit profile</a>
-			</li>
-			<li>
-				<a href="/">Back</a>
-			</li>
-		</ul>
-		{% for post in posts|reverse %}
-			<img src="/img/placeholder.png" alt="code img" height="100px" class="post-image" postid="{{ post.id }}">
-		{% endfor %}
-	{% endblock %}
+			</div>
+			<div class="mx-auto items-center mt-8 ml-4 mr-4">
+				<h1 class="text-center text-2xl font-bold mb-2">Posts</h1>
+				<div class="grid grid-cols-3 grid-rows-auto gap-4 items-center mx-auto">
+					{% for post in posts|reverse %}
+						<div class="w-full bg-gray-300 mx-auto">
+							<pre><code class="language-{{ post.language }}" postId="{{ post.id }}">{{post.code}}</code></pre>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+		</main>
+	</div>
+{% endblock %}
