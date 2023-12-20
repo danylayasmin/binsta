@@ -39,7 +39,7 @@
 			<td>
 				<button class="like-button" data-post-id="{{ post.id }}">
 					{% if loggedInUser in post.likes %}
-						<ion-icon name="heart" class="w-6 h-6"></ion-icon>
+						<ion-icon name="heart" class="w-6 h-6 text-red-500"></ion-icon>
 					{% else %}
 						<ion-icon name="heart-outline" class="w-6 h-6"></ion-icon>
 					{% endif %}

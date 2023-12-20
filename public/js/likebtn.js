@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     var action = JSON.parse(xhr.response).action;
 
                     if (action === 'liked') {
-                        button.innerHTML = '<ion-icon name="heart" class="w-6 h-6"></ion-icon>';
+                        button.innerHTML = '<ion-icon name="heart" class="w-6 h-6 text-red-500"></ion-icon>';
                         likeCount.innerHTML = parseInt(likeCount.innerHTML) + 1;
                     } else {
                         button.innerHTML = '<ion-icon name="heart-outline" class="w-6 h-6"></ion-icon>';
