@@ -32,6 +32,18 @@ class HomeController extends BaseController
                 $like_count = count(json_decode($post['likes'], true));
             }
 
+            // get all comments for this post
+            $comments = R::getAll('SELECT * from comment WHERE post_id =?', [$post['id']]);
+            $commentData = [];
+
+            foreach ($comments as $comment) {
+                $commentUser = R::load('user', $comment['user_id']);
+                $commentData[] = [
+                    'comment' => $comment,
+                    'user' => $commentUser,
+                ];
+            }
+
 
             $postData[] = [
                 'post' => $post,
@@ -41,6 +53,7 @@ class HomeController extends BaseController
                 'language' => $language,
                 'likes' => $post['likes'],
                 'like_count' => $like_count,
+                'comments' => $commentData,
             ];
         }
 
@@ -98,5 +111,20 @@ class HomeController extends BaseController
         $response = ['success' => true, 'action' => $action];
         header('Content-Type: application/json');
         echo json_encode($response);
+    }
+
+    public function commentPost() {
+        $postId = $_POST['post_id'];
+        $userId = $_SESSION['loggedInUser'];
+        $commentInput = $_POST['comment'];
+
+        $comment = R::dispense('comment');
+        $comment->post_id = $postId;
+        $comment->user_id = $userId;
+        $comment->comment = $commentInput;
+
+        R::store($comment);
+
+        header('Location: /home/feed');
     }
 }
