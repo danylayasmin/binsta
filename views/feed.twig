@@ -36,6 +36,12 @@
 			</a>
 		</aside>
 		<main class="flex-1 overflow-y-auto bg-gray-300">
+			<div class="max-w-sm md:max-w-lg lg:max-w-4xl mx-auto p-4 flex items-center justify-center">
+				<form action="search" method="post" class="flex items-center">
+					<input class="w-2/3 h-10 rounded-l-md border-r-0 border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:border-blue-500" name="query" placeholder="Search user.." type="text"/>
+					<button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-r-md"><ion-icon name="search-outline" class="w-4 h-4"></ion-icon></button>
+				</form>
+			</div>
 			{% for post in posts|reverse %}
 				<div class="max-w-sm md:max-w-lg lg:max-w-4xl mx-auto">
 					<article class="bg-white my-7 rounded-lg overflow-hidden text-black shadow-md">
@@ -101,5 +107,6 @@
 				</div>
 			{% endfor %}
 		</main>
-		<script src="/js/likebtn.js"></script>
-	{% endblock %}
+	</div>
+	<script src="/js/likebtn.js"></script>
+{% endblock %}
