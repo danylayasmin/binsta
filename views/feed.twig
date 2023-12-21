@@ -15,7 +15,6 @@
 						Home
 					</span>
 				</a>
-			</a>
 			<a class="flex items-center space-x-2 text-black" href="/post/create">
 				<ion-icon name="create-outline" class="w-8 h-8"></ion-icon>
 				<span>
@@ -34,6 +33,7 @@
 					Log out
 				</span>
 			</a>
+			</nav>
 		</aside>
 		<main class="flex-1 overflow-y-auto bg-gray-300">
 			<div class="max-w-sm md:max-w-lg lg:max-w-4xl mx-auto p-4 flex items-center justify-center">
@@ -62,9 +62,9 @@
 
 						</header>
 						<div class="w-full bg-gray-300">
-							<pre class="theme-{{ app.request.cookies.get('theme') }}"><code class="language-{{ post.language }}" postId="{{ post.id }}">{{post.code}}</code></pre>
+							<pre><code class="language-{{ post.language }}" postId="{{ post.id }}">{{post.code}}</code></pre>
 						</div>
-						<footer class="p-4">
+						<footer class="p-4" x-data="{showModal:false}">
 							<div class="mb-2 flex items-center leading-4">
 								<button class="like-button" data-post-id="{{ post.id }}">
 									{% if loggedInUser in post.likes %}
@@ -75,6 +75,28 @@
 								</button>
 								<span class="like-count ml-2" data-post-id="{{ post.id }}">{{ post.like_count }}</span>
 							</div>
+							<!-- Modal -->
+							<div x-show="showModal" x-init="showModal = false" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex justify-center items-center">
+								<div class="bg-white rounded-lg shadow-lg w-11/12 md:max-w-md mx-auto rounded-md relative"> <!-- Add relative positioning -->
+									<div class="p-4">
+										<h2 class="text-lg font-semibold mb-4">Viewing all {{ post.comments|length }} comments</h2>
+										<a class="absolute top-[0.8rem] right-2 hover:cursor-pointer" @click="showModal = false"><ion-icon name="close-circle-outline" class="w-7 h-7"></ion-icon></a> <!-- Use absolute positioning -->
+										<div class="h-px bg-gray-300 mb-4"></div>
+										<ul class="divide-y divide-neutral-600/40">
+											{% for commentData in post.comments %}
+												<li class="flex items-center justify-between py-1">
+													<div>
+														<span class="font-semibold">{{ commentData.user.username }}:</span>
+														<span>{{ commentData.comment.comment }}</span>
+													</div>
+												</li>
+											{% endfor %}
+										</ul>
+									</div>
+								</div>
+							</div>
+
+
 							<div>
 								{% if post.user.id == loggedInUser %}
 									<a href="/profile/me">
@@ -93,13 +115,45 @@
 								{% endif %}
 							</div>
 							<div class="mt-2">
-								<a class="text-gray-500 text-sm" href="#">
-									View all 6 comments
+								{% for commentData in post.comments|reverse|slice(0, 3) %}
+									{% if commentData.user.id == loggedInUser %}
+										<a href="/profile/me">
+											<span class="font-semibold text-sm text-neutral-700">{{ commentData.user.username }}:</span>
+										</a>
+										<span class="text-sm text-neutral-700">
+											{{ commentData.comment.comment }}
+										</span>
+									{% else %}
+										<a href="/profile/show?id={{ commentData.user.id }}">
+											<span class="font-semibold text-sm text-neutral-700">{{ commentData.user.username }}</span>
+										</a>
+										<span class="text-sm text-neutral-700">
+											{{ commentData.comment.comment }}
+										</span>
+									{% endif %}
+									{% if not loop.last %}
+										<br>
+									{% endif %}
+								{% endfor %}
+
+								{% if post.comments|length > 3 %}
+								<a class="text-gray-500 text-sm hover:cursor-pointer" @click="showModal = true">
+									<br>
+									View all {{ post.comments|length }} comments
 								</a>
+								{% endif %}
 							</div>
 							<div class="mt-2">
-								<form>
-									<input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Add a comment..."/>
+								<form method="post" action="/home/comment">
+									<label>
+										<input class="min-w-full flex h-10 w-full rounded-md border border-input bg-background
+										px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent
+										file:text-sm file:font-medium placeholder:text-muted-foreground
+										focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+										focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+											   name="comment" id="comment" placeholder="Add a comment..."/>
+									</label>
+									<input type="hidden" name="post_id" value="{{ post.id }}">
 								</form>
 							</div>
 						</footer>
