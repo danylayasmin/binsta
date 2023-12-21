@@ -4,19 +4,102 @@
 	{{ user.username }}
 {% endblock %}
 {% block content %}
-	<h2>Your post</h2>
-	<table>
-		<tbody>
-			<tr>
-				<th>Code</th>
-				<td>
-					<pre class="theme-{{ app.request.cookies.get('theme') }}"><code class="language-{{ language }}" postId="{{ post.id }}">{{ code}}</code></pre>
-				</td>
-			</tr>
-			<tr>
-				<th>Caption</th>
-				<td>{{ post.caption }}</td>
-			</tr>
-		</tbody>
-	</table>
+	<div class="flex h-screen bg-gray-300 text-black">
+		<aside class="w-64 hidden md:flex md:flex-col h-screen px-4 py-8 bg-gray-100 rounded-3xl shadow-sm">
+			<h1 class="text-3xl font-bold mb-10 text-black">
+				Binsta
+			</h1>
+			<nav class="flex flex-col space-y-4 w-full">
+				<a class="flex items-center space-x-2 text-black" href="/">
+					<ion-icon name="planet-outline" class="w-8 h-8"></ion-icon>
+					<span>
+						Home
+					</span>
+				</a>
+			</a>
+			<a class="flex items-center space-x-2 text-black" href="/post/create">
+				<ion-icon name="create-outline" class="w-8 h-8"></ion-icon>
+				<span>
+					Create
+				</span>
+			</a>
+			<a class="flex items-center space-x-2 text-black" href="/profile/me">
+				<ion-icon name="person-circle-outline" class="w-8 h-8"></ion-icon>
+				<span>
+					Profile
+				</span>
+			</a>
+			<a class="flex items-center space-x-2 text-black" href="/user/logout">
+				<ion-icon name="log-out-outline" class="w-8 h-8"></ion-icon>
+				<span>
+					Log out
+				</span>
+			</a>
+		</aside>
+		<main class="flex-1 overflow-y-auto bg-gray-300">
+			<div class="max-w-sm md:max-w-lg lg:max-w-4xl mx-auto">
+				<article class="bg-white my-7 rounded-lg overflow-hidden text-black shadow-md">
+					<header class="flex items-center justify-between p-4 border-b border-gray-200">
+						<div class="flex items-center space-x-3">
+							{% if post.user.id == loggedInUser %}
+								<img class="w-8 h-8 rounded-full" src="{{ post.user.profile_picture }}" alt="Profile picture of {{ post.user.username }}"/>
+								<a href="/profile/me">
+									<span class="font-semibold text-sm">{{ post.user.username }}</span>
+								</a>
+							{% else %}
+								<img class="w-8 h-8 rounded-full" src="{{ post.user.profile_picture }}" alt="Profile picture of {{ post.user.username }}"/>
+								<a href="/profile/show?id={{ post.user.id }}">
+									<span class="font-semibold text-sm">{{ post.user.username }}</span>
+								</a>
+							{% endif %}
+						</div>
+
+					</header>
+					<div class="w-full bg-gray-300">
+						<pre><code class="language-{{ post.language }}" postId="{{ post.id }}">{{post.code}}</code></pre>
+					</div>
+					<footer class="p-4">
+						<div class="mb-2 flex items-center leading-4">
+							<button class="like-button" data-post-id="{{ post.id }}">
+								{% if loggedInUser in post.likes %}
+									<ion-icon name="heart" class="w-6 h-6 text-red-500"></ion-icon>
+								{% else %}
+									<ion-icon name="heart-outline" class="w-6 h-6"></ion-icon>
+								{% endif %}
+							</button>
+							<span class="like-count ml-2" data-post-id="{{ post.id }}">{{ post.like_count }}</span>
+						</div>
+						<div>
+							{% if post.user.id == loggedInUser %}
+								<a href="/profile/me">
+									<span class="font-semibold">{{ post.user.username }}</span>
+								</a>
+								<span>
+									{{ post.caption }}
+								</span>
+							{% else %}
+								<a href="/profile/show?id={{ post.user.id }}">
+									<span class="font-semibold">{{ post.user.username }}</span>
+								</a>
+								<span>
+									{{ post.caption }}
+								</span>
+							{% endif %}
+						</div>
+						<div class="mt-2">
+							<a class="text-gray-500 text-sm" href="#">
+								View all 6 comments
+							</a>
+						</div>
+						<div class="mt-2">
+							<form>
+								<input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Add a comment..."/>
+							</form>
+						</div>
+					</footer>
+				</article>
+			</div>
+		</main>
+	</div>
+	<script src="/js/likebtn.js"></script>
 {% endblock %}

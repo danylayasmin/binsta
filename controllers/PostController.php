@@ -28,6 +28,12 @@ class PostController extends BaseController
                 error(404, 'Post not found with ID ' . $_GET['id'], '/home/feed');
                 exit;
             }
+
+            $like_count = 0;
+
+            if (isset($post['likes'])) {
+                $like_count = count(json_decode($post['likes'], true));
+            }
         }
         // get data for template
         $data = [
@@ -37,8 +43,43 @@ class PostController extends BaseController
             'code' => $code,
             'theme' => $theme,
             'language' => $language,
+            'likes' => $post['likes'],
+            'like_count' => $like_count,
         ];
         displayTemplate('post/show.twig', $data);
+    }
+
+    public function likePost()
+    {
+        $postId = $_POST['postId'];
+        $userId = $_SESSION['loggedInUser']; // dit kunnen we dan opslaan in een array in db?
+        // en dan iets van ophalen wie heeft geliked, als t logged in user is dan ingekleurd ofzo
+
+        $action = 'unknown';
+
+        $post = R::load('post', $postId);
+        $postLikes = json_decode($post->likes, true); // Decode the JSON string to an array
+
+        if (!is_array($postLikes)) {
+            $postLikes = [];
+        }
+
+        if (!in_array($userId, $postLikes)) {
+            $postLikes[] = $userId;
+            $action = 'liked';
+        } else {
+            $postLikes = array_diff($postLikes, [$userId]);
+            $action = 'unliked';
+        }
+
+        $post->likes = json_encode($postLikes);
+        R::store($post);
+
+
+
+        $response = ['success' => true, 'action' => $action];
+        header('Content-Type: application/json');
+        echo json_encode($response);
     }
 
     // create new post
