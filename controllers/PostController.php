@@ -107,6 +107,11 @@ class PostController extends BaseController
     // store new post in database
     public function createPost()
     {
+        validateLength('caption', 255, 'Caption is too long', '/post/create');
+        validateLength('code', 5000, 'Code snippet is too long', '/post/create');
+        validateLength('language', 50, 'Language is too long', '/post/create');
+
+
         // store data in database
         $post = R::dispense('post');
         $post->code = $_POST['code'];
