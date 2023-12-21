@@ -48,7 +48,6 @@ class HomeController extends BaseController
         $data = [
             'posts' => $postData,
             'project_name' => 'Binsta',
-
         ];
 
         displayTemplate('feed.twig', $data);
