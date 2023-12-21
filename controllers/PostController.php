@@ -19,7 +19,7 @@ class PostController extends BaseController
 
         foreach ($posts as $post) {
             $code = $post['code'];
-            $theme = $post['theme'];
+            $theme = $_COOKIE['theme'] ?? 'github-dark';
             $language = $post['language'];
 
             // check if id post exists
@@ -34,6 +34,17 @@ class PostController extends BaseController
             if (isset($post['likes'])) {
                 $like_count = count(json_decode($post['likes'], true));
             }
+
+            $comments = R::getAll('SELECT * from comment WHERE post_id =?', [$post['id']]);
+            $commentData = [];
+
+            foreach ($comments as $comment) {
+                $commentUser = R::load('user', $comment['user_id']);
+                $commentData[] = [
+                    'comment' => $comment,
+                    'user' => $commentUser,
+                ];
+            }
         }
         // get data for template
         $data = [
@@ -45,17 +56,16 @@ class PostController extends BaseController
             'language' => $language,
             'likes' => $post['likes'],
             'like_count' => $like_count,
+            'comments' => $commentData,
         ];
+
         displayTemplate('post/show.twig', $data);
     }
 
     public function likePost()
     {
         $postId = $_POST['postId'];
-        $userId = $_SESSION['loggedInUser']; // dit kunnen we dan opslaan in een array in db?
-        // en dan iets van ophalen wie heeft geliked, als t logged in user is dan ingekleurd ofzo
-
-        $action = 'unknown';
+        $userId = $_SESSION['loggedInUser'];
 
         $post = R::load('post', $postId);
         $postLikes = json_decode($post->likes, true); // Decode the JSON string to an array

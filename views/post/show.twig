@@ -16,7 +16,6 @@
 						Home
 					</span>
 				</a>
-			</a>
 			<a class="flex items-center space-x-2 text-black" href="/post/create">
 				<ion-icon name="create-outline" class="w-8 h-8"></ion-icon>
 				<span>
@@ -35,6 +34,8 @@
 					Log out
 				</span>
 			</a>
+
+			</nav>
 		</aside>
 		<main class="flex-1 overflow-y-auto bg-gray-300">
 			<div class="max-w-sm md:max-w-lg lg:max-w-4xl mx-auto">
@@ -67,7 +68,7 @@
 									<ion-icon name="heart-outline" class="w-6 h-6"></ion-icon>
 								{% endif %}
 							</button>
-							<span class="like-count ml-2" data-post-id="{{ post.id }}">{{ post.like_count }}</span>
+							<span class="like-count ml-2" data-post-id="{{ post.id }}">{{ like_count }}</span>
 						</div>
 						<div>
 							{% if post.user.id == loggedInUser %}
@@ -87,14 +88,26 @@
 							{% endif %}
 						</div>
 						<div class="mt-2">
-							<a class="text-gray-500 text-sm" href="#">
-								View all 6 comments
-							</a>
-						</div>
-						<div class="mt-2">
-							<form>
-								<input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="Add a comment..."/>
-							</form>
+							{% for commentData in comments|reverse %}
+								{% if commentData.user.id == loggedInUser %}
+									<a href="/profile/me">
+										<span class="font-semibold text-sm text-neutral-700">{{ commentData.user.username }}:</span>
+									</a>
+									<span class="text-sm text-neutral-700">
+											{{ commentData.comment.comment }}
+										</span>
+								{% else %}
+									<a href="/profile/show?id={{ commentData.user.id }}">
+										<span class="font-semibold text-sm text-neutral-700">{{ commentData.user.username }}</span>
+									</a>
+									<span class="text-sm text-neutral-700">
+											{{ commentData.comment.comment }}
+										</span>
+								{% endif %}
+								{% if not loop.last %}
+									<br>
+								{% endif %}
+							{% endfor %}
 						</div>
 					</footer>
 				</article>

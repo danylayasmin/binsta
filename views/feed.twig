@@ -42,6 +42,7 @@
 					<button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-r-md"><ion-icon name="search-outline" class="w-4 h-4"></ion-icon></button>
 				</form>
 			</div>
+
 			{% for post in posts|reverse %}
 				<div class="max-w-sm md:max-w-lg lg:max-w-4xl mx-auto">
 					<article class="bg-white my-7 rounded-lg overflow-hidden text-black shadow-md">
@@ -76,11 +77,11 @@
 								<span class="like-count ml-2" data-post-id="{{ post.id }}">{{ post.like_count }}</span>
 							</div>
 							<!-- Modal -->
-							<div x-show="showModal" x-init="showModal = false" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex justify-center items-center">
-								<div class="bg-white rounded-lg shadow-lg w-11/12 md:max-w-md mx-auto rounded-md relative"> <!-- Add relative positioning -->
+							<div x-cloak x-show="showModal" x-init="showModal = false" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex justify-center items-center">
+								<div class="bg-white rounded-lg shadow-lg w-11/12 md:max-w-md mx-auto rounded-md relative">
 									<div class="p-4">
 										<h2 class="text-lg font-semibold mb-4">Viewing all {{ post.comments|length }} comments</h2>
-										<a class="absolute top-[0.8rem] right-2 hover:cursor-pointer" @click="showModal = false"><ion-icon name="close-circle-outline" class="w-7 h-7"></ion-icon></a> <!-- Use absolute positioning -->
+										<a class="absolute top-[0.8rem] right-2 hover:cursor-pointer" @click="showModal = false"><ion-icon name="close-circle-outline" class="w-7 h-7"></ion-icon></a>
 										<div class="h-px bg-gray-300 mb-4"></div>
 										<ul class="divide-y divide-neutral-600/40">
 											{% for commentData in post.comments %}
@@ -95,8 +96,6 @@
 									</div>
 								</div>
 							</div>
-
-
 							<div>
 								{% if post.user.id == loggedInUser %}
 									<a href="/profile/me">
@@ -160,6 +159,28 @@
 					</article>
 				</div>
 			{% endfor %}
+			{% if users is defined %}
+			<div x-cloak x-data="{showUserModal:true}">
+				<div x-show="showUserModal" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-75 flex justify-center items-center">
+					<div class="bg-white rounded-lg shadow-lg w-11/12 md:max-w-md mx-auto rounded-md relative">
+						<div class="p-4">
+							<h2 class="text-lg font-semibold mb-4">Search results</h2>
+							<a class="absolute top-[0.8rem] right-2 hover:cursor-pointer" @click="showUserModal = false">Close</a>
+							<div class="h-px bg-gray-300 mb-4"></div>
+							<ul class="divide-y divide-neutral-600/40">
+								{% if users is empty %}
+								<p>No users found</p>
+								{% else %}
+								{% for user in users %}
+									<li><a href="/profile/show?id={{ user.id }}" class="font-medium">{{ user.username }}</a></li>
+								{% endfor %}
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endif %}
 		</main>
 	</div>
 	<script src="/js/likebtn.js"></script>

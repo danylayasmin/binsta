@@ -72,11 +72,53 @@ class HomeController extends BaseController
 
         $users = R::find('user', 'username LIKE ? OR display_name LIKE ?', ["%$query%", "%$query%"]);
 
+        $posts = R::getAll('SELECT * from post');
+
+        foreach ($posts as $post) {
+            $code = $post['code'];
+            $language = $post['language'];
+
+
+            $user = R::load('user', $post['user_id']);
+
+            $like_count = 0;
+
+            if (isset($post['likes'])) {
+                $like_count = count(json_decode($post['likes'], true));
+            }
+
+            // get all comments for this post
+            $comments = R::getAll('SELECT * from comment WHERE post_id =?', [$post['id']]);
+            $commentData = [];
+
+            foreach ($comments as $comment) {
+                $commentUser = R::load('user', $comment['user_id']);
+                $commentData[] = [
+                    'comment' => $comment,
+                    'user' => $commentUser,
+                ];
+            }
+
+
+            $postData[] = [
+                'post' => $post,
+                'id' => $post['id'],
+                'user' => $user,
+                'code' => $code,
+                'language' => $language,
+                'likes' => $post['likes'],
+                'like_count' => $like_count,
+                'comments' => $commentData,
+            ];
+        }
+
         $data = [
             'users' => $users,
+            'posts' => $postData,
+            'project_name' => 'Binsta',
         ];
 
-        displayTemplate('search.twig', $data);
+        displayTemplate('feed.twig', $data);
     }
 
     public function likePost()
