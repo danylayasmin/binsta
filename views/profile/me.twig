@@ -87,7 +87,9 @@
 				<div class="grid grid-cols-3 grid-rows-auto gap-4 items-center mx-auto">
 					{% for post in posts|reverse %}
 						<div class="w-full bg-gray-300 mx-auto">
-							<pre><code class="language-{{ post.language }}" postId="{{ post.id }}">{{post.code}}</code></pre>
+							<a href="/post/show?id={{ post.id }}">
+								<pre><code class="language-{{ post.language }}" postId="{{ post.id }}">{{post.code}}</code></pre>
+							</a>
 						</div>
 					{% endfor %}
 				</div>
