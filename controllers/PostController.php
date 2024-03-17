@@ -33,6 +33,14 @@ class PostController extends BaseController
 
             if (isset($post['likes'])) {
                 $like_count = count(json_decode($post['likes'], true));
+
+                $likes = json_decode($post['likes'], true);
+                $likeData = [];
+
+                foreach ($likes as $like) {
+                    $likeUser = R::load('user', $like);
+                    $likeData[] = $likeUser;
+                }
             }
 
             $comments = R::getAll('SELECT * from comment WHERE post_id =?', [$post['id']]);
@@ -56,6 +64,7 @@ class PostController extends BaseController
             'language' => $language,
             'likes' => $post['likes'],
             'like_count' => $like_count,
+            'likeData' => $likeData,
             'comments' => $commentData,
         ];
 
@@ -125,5 +134,120 @@ class PostController extends BaseController
         // redirect to post
         $id = $post->id;
         header("Location: /post/show?id=$id");
+    }
+
+    public function edit()
+    {
+        $this->authorizeUser();
+
+        if (!isset($_GET['id'])) {
+            error(
+                404,
+                'No ID provided',
+                '/home/feed'
+            );
+            exit;
+        }
+
+        // get post with specified id
+        $post = $this->getBeanById('post', $_GET['id']);
+
+        // check if post exists
+        if (!isset($post)) {
+            error(404, 'Post not found with ID ' . $_GET['id'], '/home/feed');
+            exit;
+        }
+
+        // check if user is authorized to edit post
+        if ($post->user->id !== $_SESSION['loggedInUser']) {
+            error(403, 'You are not authorized to edit this post', '/home/feed');
+            exit;
+        }
+
+        // get data for template
+        $data = getHighlightJSData();
+        $data['post'] = $post;
+
+        displayTemplate(
+            'post/edit.twig',
+            $data
+        );
+    }
+
+    public function update()
+    {
+        $this->authorizeUser();
+
+        if (!isset($_GET['id'])) {
+            error(
+                404,
+                'No ID provided',
+                '/home/feed'
+            );
+            exit;
+        }
+
+        $post = $this->getBeanById('post', $_GET['id']);
+
+        if (!isset($post)) {
+            error(404, 'Post not found with ID ' . $_GET['id'], '/home/feed');
+            exit;
+        }
+
+        if (
+            $post->user->id !== $_SESSION['loggedInUser']
+        ) {
+            error(403, 'You are not authorized to edit this post', '/home/feed');
+            exit;
+        }
+
+        validateLength(
+            'caption',
+            255,
+            'Caption is too long',
+            '/post/edit?id=' . $post->id
+        );
+        validateLength('code', 5000, 'Code snippet is too long', '/post/edit?id=' . $post->id);
+        validateLength('language', 50, 'Language is too long', '/post/edit?id=' . $post->id);
+
+        $post->code = $_POST['code'];
+        $post->caption = $_POST['caption'];
+        $post->language = $_POST['language'];
+        R::store($post);
+
+        // redirect to post
+        header("Location: /post/show?id=" . $post->id);
+    }
+
+    // delete post with specified id if authorized. always POST cause we dont have a frontend page for this (its a button)
+    public function deletePost()
+    {
+        $this->authorizeUser();
+
+        if (!isset($_POST['id'])) {
+            error(
+                404,
+                'No ID provided',
+                '/home/feed'
+            );
+            exit;
+        }
+
+        $post = $this->getBeanById('post', $_POST['id']);
+
+        if (!isset($post)) {
+            error(404, 'Post not found with ID ' . $_POST['id'], '/home/feed');
+            exit;
+        }
+
+        if (
+            $post->user->id !== $_SESSION['loggedInUser']
+        ) {
+            error(403, 'You are not authorized to delete this post', '/home/feed');
+            exit;
+        }
+
+        R::trash($post);
+        header('Location: /home/feed');
     }
 }

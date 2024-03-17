@@ -30,6 +30,14 @@ class HomeController extends BaseController
 
             if (isset($post['likes'])) {
                 $like_count = count(json_decode($post['likes'], true));
+
+                $likes = json_decode($post['likes'], true);
+                $likeData = [];
+
+                foreach ($likes as $like) {
+                    $likeUser = R::load('user', $like);
+                    $likeData[] = $likeUser;
+                }
             }
 
             // get all comments for this post
@@ -53,6 +61,7 @@ class HomeController extends BaseController
                 'language' => $language,
                 'likes' => $post['likes'],
                 'like_count' => $like_count,
+                'likeData' => $likeData,
                 'comments' => $commentData,
             ];
         }
@@ -154,7 +163,8 @@ class HomeController extends BaseController
         echo json_encode($response);
     }
 
-    public function commentPost() {
+    public function commentPost()
+    {
         $postId = $_POST['post_id'];
         $userId = $_SESSION['loggedInUser'];
         $commentInput = $_POST['comment'];
