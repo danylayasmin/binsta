@@ -2,45 +2,61 @@
 {% block title %}
 	Edit profile
 {% endblock %}
-{% block navbar %}
-{% endblock %}
+{% block navbar %}{% endblock %}
 {% block content %}
-<h2>Edit your profile</h2>
-<form method="post" action="edit">
-     <table>
-        <tbody>
-            <tr>
-                <th>Username</th>
-                <td>
-                    <input type="text" name="username" required placeholder="{{ user.username }}" value="{{ user.username }}" minlength="2" maxlength="25">
-                </td>
-            </tr>
-            <tr>
-                <th>Display name</th>
-                <td>
-                    <input type="text" name="displayName" required placeholder="{{ user.displayName }}" value="{{ user.displayName }}" maxlength="25">
-                </td>
-            </tr>
-            <tr>
-                <th>E-mail</th>
-                <td>
-                    <input type="email" name="email" required placeholder="{{ user.email }}" value="{{ user.email }}">
-                </td>
-            </tr>
-            <tr>
-                <th>Profile picture</th>
-                <td>
-                    <input type="text" name="profilePicture" required placeholder="{{ user.profilePicture }}" value="{{ user.profilePicture }}" pattern="(((http://www)|(http://)|(www)|(https://)|(https://www.))[-a-zA-Z0-9@:%_\+.~#?&//=]+)\.(jpg|jpeg|gif|png|bmp|tiff|tga|svg)">
-                </td>
-            </tr>
-            <tr>
-                <th>Biography</th>
-                <td>
-                    <textarea name="bio" required placeholder="{{ user.bio }}">{{ user.bio }}</textarea>
-                </td>
-        </tbody>
-    </table>
-    <a href="/profile/me">Back</a>
-    <input type="submit" value="Edit profile"/>
-</form>
+	<div class="flex h-screen bg-gray-300 text-black">
+		<aside class="w-64 hidden md:flex md:flex-col h-screen px-4 py-8 bg-gray-100 rounded-r-3xl shadow-sm">
+			<h1 class="text-3xl font-bold mb-10 text-black">
+				Binsta
+			</h1>
+			<nav class="flex flex-col space-y-4 w-full">
+				<a class="flex items-center space-x-2 text-black" href="/">
+					<ion-icon name="planet-outline" class="w-8 h-8"></ion-icon>
+					<span>
+						Home
+					</span>
+				</a>
+				<a class="flex items-center space-x-2 text-black" href="/post/create">
+					<ion-icon name="create-outline" class="w-8 h-8"></ion-icon>
+					<span>
+						Create
+					</span>
+				</a>
+				<a class="flex items-center space-x-2 text-black" href="/profile/me">
+					<ion-icon name="person-circle-outline" class="w-8 h-8"></ion-icon>
+					<span>
+						Profile
+					</span>
+				</a>
+				<a class="flex items-center space-x-2 text-black" href="/user/logout">
+					<ion-icon name="log-out-outline" class="w-8 h-8"></ion-icon>
+					<span>
+						Log out
+					</span>
+				</a>
+			</nav>
+		</aside>
+		<main class="flex-1 overflow-y-auto bg-gray-300">
+			<div class="flex flex-col items-center p-6 max-w-4xl mx-auto bg-gray-100 rounded-3xl mt-12  m-auto">
+				<div class="mx-auto w-full max-w-sm lg:w-96">
+					<div>
+						<h2 class="mt-2 text-3xl font-medium text-gray-900">Edit your profile</h2>
+					</div>
+					<div class="mt-8">
+						<div class="mt-6">
+							<form action="edit" method="post" class="space-y-6">
+								<input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="username" name="username" autocomplete="username" required placeholder="{{ user.username }}" value="{{ user.username }}" minlength="2" maxlength="25" type="text">
+								<input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="displayName" name="displayName" autocomplete="nickname" required placeholder="{{ user.displayName }}" value="{{ user.displayName }}" maxlength="25" type="text">
+								<input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="email" name="email" autocomplete="email" required placeholder="{{ user.email }}" value="{{ user.email }}" type="email">
+								<input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="profilePicture" name="profilePicture" required placeholder="{{ user.profilePicture }}" value="{{ user.profilePicture }}" pattern="(((http://www)|(http://)|(www)|(https://)|(https://www.))[-a-zA-Z0-9@:%_\+.~#?&//=]+)\.(jpg|jpeg|gif|png|bmp|tiff|tga|svg)" type="text">
+								<textarea id="bio" name="bio" placeholder="{{ user.bio }}" class="w-full h-64 p-2 border rounded-lg bg-gray-100 resize-none">{{ user.bio }}</textarea>
+								<button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 w-full bg-blue-600 text-white">Edit profile</button>
+								<a href="/profile/me" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-full bg-gray-600 hover:bg-gray-700 text-white">Back</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
 {% endblock %}

@@ -66,14 +66,14 @@ class ProfileController extends BaseController
     {
         // check if id is set
         if (!isset($_GET['id'])) {
-            error(404, 'No user ID provided', '/home/welcome');
+            error(404, 'No user ID provided', '/home/feed');
             exit;
         }
 
         // check if id post exists
         $user = $this->getBeanById('user', $_GET['id']);
         if (!isset($user)) {
-            error(404, 'User not found with ID ' . $_GET['id'], '/home/welcome');
+            error(404, 'User not found with ID ' . $_GET['id'], '/home/feed');
             exit;
         }
 

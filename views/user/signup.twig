@@ -2,63 +2,47 @@
 {% block title %}
 	Sign up
 {% endblock %}
-{% block navbar %}
-{% endblock %}
+{% block navbar %}{% endblock %}
 {% block content %}
-<h2>Create your account</h2>
-<form method="post" action="signup">
-    <table>
-        <tbody>
-            <tr>
-                <th>Username</th>
-                <td>
-                    <input type="text" name="username" required placeholder="Your username">
-                </td>
-            </tr>
-            <tr>
-                <th>Display name</th>
-                <td>
-                    <input type="text" name="displayName" required placeholder="Your display name">
-                </td>
-            </tr>
-            <tr>
-                <th>E-mail</th>
-                <td>
-                    <input type="email" name="email" required placeholder="Your e-mail">
-                </td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>
-                    <input type="password" name="password" required placeholder="Your password">
-                </td>
-            </tr>
-            <tr>
-                <th>Confirm password</th>
-                <td>
-                    <input type="password" name="confirmPassword" required placeholder="Confirm your password">
-                </td>
-            </tr>
-            <tr>
-                <th>Security question</th>
-                <td>
-                    <select name="securityQuestion">
-                        <option value="" selected disabled hidden>Choose a security question</option>
-                        {% for securityQuestion in securityQuestions %}
-                            <option value="{{ securityQuestion }}">{{ securityQuestion }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Security answer</th>
-                <td>
-                    <input type="text" name="securityAnswer" required placeholder="Your security answer">
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="/">Back</a>
-    <input type="submit" value="Sign up"/>
-</form>
+	<div class="min-h-screen bg-[url('https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] flex">
+		<div class="flex-1 bg-white flex flex-col justify-center px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+			<div class="mx-auto w-full max-w-sm lg:w-96 py-4">
+				<div>
+					<h1 class="text-3xl font-bold">Binsta</h1>
+					<h2 class="mt-2 text-3xl font-medium text-gray-900">Create your account</h2>
+				</div>
+				<div class="mt-8">
+					<div class="mt-6">
+						<form action="signup" method="post" class="space-y-6">
+							<input maxlength="150" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="username" name="username" autocomplete="username" required placeholder="Your username" type="text">
+							<input maxlength="150" class="h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="displayName" name="displayName" autocomplete="nickname" required placeholder="Your display name" type="text">
+							<input maxlength="150" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="email" name="email" autocomplete="email" required placeholder="Your e-mail" type="email">
+							<input maxlength="150"  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="password" name="password" autocomplete="new-password" required placeholder="Your password" type="password">
+							<input maxlength="150"  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="confirmPassword" name="confirmPassword" autocomplete="new-password" required placeholder="Confirm your password" type="password">
+							<select name="securityQuestion" id="securityQuestion" required class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+								<option value="" selected disabled hidden>Choose a security question</option>
+								{% for securityQuestion in securityQuestions %}
+									<option value="{{ securityQuestion }}">{{ securityQuestion }}</option>
+								{% endfor %}
+							</select>
+							<input maxlength="150"  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="securityAnswer" name="securityAnswer" required placeholder="Your security answer" type="text">
+							<button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 w-full bg-blue-600 text-white">Sign
+																																																															                                up</button>
+							<a href="/" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-full bg-gray-600 hover:bg-gray-700 text-white">Back</a>
+						</form>
+						<div class="mt-6 relative">
+							<div class="absolute inset-0 flex items-center" aria-hidden="true">
+								<div class="w-full border-t border-gray-300"></div>
+							</div>
+							<div class="relative flex justify-center text-sm">
+								<span class="px-2 bg-white text-gray-500">Already have an account?
+									<a class="text-blue-600 hover:text-blue-500" href="/user/login">Log in here</a>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

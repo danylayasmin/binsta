@@ -2,45 +2,33 @@
 {% block title %}
 	Forgot password
 {% endblock %}
-{% block navbar %}
-{% endblock %}
+{% block navbar %}{% endblock %}
 {% block content %}
-<h2>Reset your password</h2>
-<form method="post" action="forgot">
-    <table>
-        <tbody>
-            <tr>
-                <th>Username</th>
-                <td>
-                    <input type="text" name="username" required placeholder="Your username">
-                </td>
-            </tr>
-            <tr>
-                <th>E-mail</th>
-                <td>
-                    <input type="email" name="email" required placeholder="Your e-mail">
-                </td>
-            </tr>
-             <tr>
-                <th>What security question did you pick?</th>
-                <td>
-                    <select name="securityQuestion">
-                        <option value="" selected disabled hidden>Choose a security question</option>
-                        {% for securityQuestion in securityQuestions %}
-                            <option value="{{ securityQuestion }}">{{ securityQuestion }}</option>
-                        {% endfor %}
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Security answer</th>
-                <td>
-                    <input type="text" name="securityAnswer" required placeholder="Your security answer">
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <a href="/">Back</a>
-    <input type="submit" value="Submit"/>
-</form>
+	<div class="min-h-screen bg-[url('https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] flex">
+		<div class="flex-1 bg-white flex flex-col justify-center px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+			<div class="mx-auto w-full max-w-sm lg:w-96">
+				<div>
+					<h1 class="text-3xl font-bold">Binsta</h1>
+					<h2 class="mt-2 text-3xl font-medium text-gray-900">Reset your  password</h2>
+				</div>
+				<div class="mt-8">
+					<div class="mt-6">
+						<form action="forgot" method="post" class="space-y-6">
+							<input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="username" name="username" autocomplete="username" required placeholder="Your username" type="text">
+							<input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="email" name="email" autocomplete="email" required placeholder="Your e-mail" type="email">
+							<select name="securityQuestion" id="securityQuestion" required class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+								<option value="" selected disabled hidden>What security question did you pick?</option>
+								{% for securityQuestion in securityQuestions %}
+									<option value="{{ securityQuestion }}">{{ securityQuestion }}</option>
+								{% endfor %}
+							</select>
+							<input class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" id="securityAnswer" name="securityAnswer" required placeholder="Your security answer" type="text">
+							<button type="submit" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-primary/90 h-10 px-4 py-2 w-full bg-blue-600 text-white">Submit</button>
+							<a href="/" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 w-full bg-gray-600 hover:bg-gray-700 text-white">Back</a>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

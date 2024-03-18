@@ -14,7 +14,7 @@ $dbName = $_ENV['DB_NAME'] ?? '';
 $dbUser = $_ENV['DB_USER'] ?? '';
 $dbPass = $_ENV['DB_PASSWORD'] ?? '';
 
-if (!empty($dbHost) && !empty($dbName) && !empty($dbUser) && !empty($dbPass)) {
+if (!empty($dbHost) && !empty($dbName) && !empty($dbUser)) {
     try {
         R::setup("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
     } catch (Exception $e) {
@@ -67,7 +67,7 @@ if (isset($params[1])) {
     }
     // default method
 } else {
-    $method = 'welcome';
+    $method = 'index';
 }
 
 // call controller + corresponding method

@@ -6,8 +6,81 @@ use RedBeanPHP\R as R;
 
 class HomeController extends BaseController
 {
-    public function welcome()
+    public function index()
     {
+        if (isset($_SESSION['loggedInUser'])) {
+            header('Location: home/feed');
+        } else {
+            displayTemplate('index.twig');
+        }
+    }
+
+    public function feed()
+    {
+        $posts = R::getAll('SELECT * from post');
+
+        foreach ($posts as $post) {
+            $code = $post['code'];
+            $language = $post['language'];
+
+
+            $user = R::load('user', $post['user_id']);
+
+            $like_count = 0;
+
+            if (isset($post['likes'])) {
+                $like_count = count(json_decode($post['likes'], true));
+
+                $likes = json_decode($post['likes'], true);
+                $likeData = [];
+
+                foreach ($likes as $like) {
+                    $likeUser = R::load('user', $like);
+                    $likeData[] = $likeUser;
+                }
+            }
+
+            // get all comments for this post
+            $comments = R::getAll('SELECT * from comment WHERE post_id =?', [$post['id']]);
+            $commentData = [];
+
+            foreach ($comments as $comment) {
+                $commentUser = R::load('user', $comment['user_id']);
+                $commentData[] = [
+                    'comment' => $comment,
+                    'user' => $commentUser,
+                ];
+            }
+
+
+            $postData[] = [
+                'post' => $post,
+                'id' => $post['id'],
+                'user' => $user,
+                'code' => $code,
+                'language' => $language,
+                'likes' => $post['likes'],
+                'like_count' => $like_count,
+                'likeData' => $likeData,
+                'comments' => $commentData,
+            ];
+        }
+
+        // get data for template
+        $data = [
+            'posts' => $postData,
+            'project_name' => 'Binsta',
+        ];
+
+        displayTemplate('feed.twig', $data);
+    }
+
+    public function searchPost()
+    {
+        $query = $_POST['query'];
+
+        $users = R::find('user', 'username LIKE ? OR display_name LIKE ?', ["%$query%", "%$query%"]);
+
         $posts = R::getAll('SELECT * from post');
 
         foreach ($posts as $post) {
@@ -23,6 +96,18 @@ class HomeController extends BaseController
                 $like_count = count(json_decode($post['likes'], true));
             }
 
+            // get all comments for this post
+            $comments = R::getAll('SELECT * from comment WHERE post_id =?', [$post['id']]);
+            $commentData = [];
+
+            foreach ($comments as $comment) {
+                $commentUser = R::load('user', $comment['user_id']);
+                $commentData[] = [
+                    'comment' => $comment,
+                    'user' => $commentUser,
+                ];
+            }
+
 
             $postData[] = [
                 'post' => $post,
@@ -32,30 +117,17 @@ class HomeController extends BaseController
                 'language' => $language,
                 'likes' => $post['likes'],
                 'like_count' => $like_count,
+                'comments' => $commentData,
             ];
         }
 
-        // get data for template
-        $data = [
-            'posts' => $postData,
-            'project_name' => 'Binsta',
-
-        ];
-
-        displayTemplate('welcome.twig', $data);
-    }
-
-    public function searchPost()
-    {
-        $query = $_POST['query'];
-
-        $users = R::find('user', 'username LIKE ? OR display_name LIKE ?', ["%$query%", "%$query%"]);
-
         $data = [
             'users' => $users,
+            'posts' => $postData,
+            'project_name' => 'Binsta',
         ];
 
-        displayTemplate('search.twig', $data);
+        displayTemplate('feed.twig', $data);
     }
 
     public function likePost()
@@ -89,5 +161,21 @@ class HomeController extends BaseController
         $response = ['success' => true, 'action' => $action];
         header('Content-Type: application/json');
         echo json_encode($response);
+    }
+
+    public function commentPost()
+    {
+        $postId = $_POST['post_id'];
+        $userId = $_SESSION['loggedInUser'];
+        $commentInput = $_POST['comment'];
+
+        $comment = R::dispense('comment');
+        $comment->post_id = $postId;
+        $comment->user_id = $userId;
+        $comment->comment = $commentInput;
+
+        R::store($comment);
+
+        header('Location: /home/feed');
     }
 }

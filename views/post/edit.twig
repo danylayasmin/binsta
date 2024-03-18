@@ -1,11 +1,10 @@
 {% extends "./layouts/app.twig" %}
 {% block title %}
-	Create post
+	Edit post
 {% endblock %}
 {% block content %}
 	<div class="flex bg-gray-300 text-black">
 		<aside class="w-64 hidden md:flex md:flex-col h-screen px-4 py-8 bg-gray-100 rounded-r-3xl shadow-sm">
-
 			<h1 class="text-3xl font-bold mb-10 text-black">
 				Binsta
 			</h1>
@@ -42,30 +41,18 @@
 					<div class="py-6 px-6 bg-white w-[30rem] lg:w-[60rem] rounded-2xl ">
 						<form action="create" method="post">
 							<div class="mb-4">
-								<label for="language" class="block text-sm font-medium text-gray-700 mb-1">
-									Select language
-								</label>
-								<select id="language" name="language" required class="w-full border rounded-lg p-2 bg-gray-100">
-									<option value="" selected disabled hidden>none chosen</option>
-									{% for language in languages %}
-										<option value="{{ language }}">{{ language }}</option>
-									{% endfor %}
-								</select>
-							</div>
-							<div class="mb-4">
 								<label for="code" class="block text-sm font-medium text-gray-700 mb-1">
 									Snippet
 								</label>
+								<textarea maxlength="4000" id="code" required name="code" class="w-full h-64 p-2 border rounded-lg bg-gray-100 resize-none">{{ post.code }}</textarea>
 
-								<textarea maxlength="4000" id="code" required name="code" placeholder="Enter your code snippet here..." class="w-full h-64 p-2 border rounded-lg bg-gray-100 resize-none"></textarea>
 							</div>
 							<div class="mb-4">
 								<label for="caption" maxlength="1500" required class="block text-sm font-medium text-gray-700 mb-1">
 									Caption
 								</label>
-
-								<input class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full" id="caption" name="caption" maxlength="255" placeholder="Enter a caption for your snippet"/></div>
-
+								<input class="flex h-10 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 w-full" id="caption" name="caption" maxlength="255" value="{{ post.caption }}"/>
+							</div>
 							<button type="submit" class="flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-black hover:bg-gray-700">
 								<ion-icon name="save-outline" class="h-5 w-5"></ion-icon>
 								<span class="ml-2">Create post</span>
@@ -75,7 +62,6 @@
 				</div>
 			</main>
 		</div>
-
 	</div>
-
 {% endblock %}
+

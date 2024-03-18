@@ -111,3 +111,10 @@ function setThemeCookie(string $themeName): bool
 {
     return setcookie('theme', $themeName);
 }
+
+function validateLength($input, $maxLength, $errorMessage, $redirect) {
+    if (strlen($_POST[$input]) > $maxLength) {
+        error(401, $errorMessage, $redirect);
+        die();
+    }
+}

@@ -51,30 +51,30 @@ $berichten = [
     [
         'code' => '<?php echo "Hello World"; ?>',
         'caption' => 'First code post',
-        'theme' => 'default',
         'language' => 'php',
-        'user_id' => 1
+        'user_id' => 1,
+        'likes' => '[]',
     ],
     [
         'code' => 'console.log("Hello World");',
         'caption' => 'First code post',
-        'theme' => 'shades-of-purple',
         'language' => 'javascript',
-        'user_id' => 2
+        'user_id' => 2,
+        'likes' => '[]',
     ],
     [
         'code' => 'print("Hello World")',
         'caption' => 'Second code post',
-        'theme' => 'duotone-sea',
         'language' => 'python',
-        'user_id' => 1
+        'user_id' => 1,
+        'likes' => '[]',
     ],
     [
         'code' => 'echo "Hello World";',
         'caption' => 'Second code post',
-        'theme' => 'material-oceanic',
         'language' => 'php',
-        'user_id' => 2
+        'user_id' => 2,
+        'likes' => '[]',
     ]
 ];
 
@@ -83,9 +83,9 @@ foreach ($berichten as $bericht) {
     $post = R::dispense('post');
     $post->code = $bericht['code'];
     $post->caption = $bericht['caption'];
-    $post->theme = $bericht['theme'];
     $post->language = $bericht['language'];
     $post->user_id = $bericht['user_id'];
+    $post->likes = $bericht['likes'];
     R::store($post);
 }
 print(R::count('post') . " posts inserted" . PHP_EOL);

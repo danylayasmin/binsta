@@ -9,7 +9,9 @@
 			<link rel="stylesheet" href="/styles/fonts.css">
 			<script src="https://cdn.tailwindcss.com"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+			<script src="//unpkg.com/alpinejs" defer></script>
 			<script src="/js/highlight-loader.js"></script>
+			<link rel="stylesheet" href="/styles/cloak.css">
 			<title>
 				{% block title %}{% endblock %}- Binsta
 			</title>
@@ -22,18 +24,15 @@
 		{% block navbar %}
 			<nav>
 				<ul>
-					{% if loggedInUser %}
-						<li>
-							<a href="/user/logout">
-								Log out</a>
-						</li>
-					{% else %}
-						<li>
-							<a href="/user/login">Log in</a>
-						</li>
-						<li>
-							<a href="/user/signup">Sign up</a>
-						</li>
+					{% if not loggedInUser %}
+						<header class="flex items-center justify-between py-6 px-8 bg-gray-100/80 shadow-sm rounded-b-2xl">
+							<a href="/" class="font-bold bg-gradient-to-br from-blue-400 to-blue-600
+																																																											             inline-block text-transparent bg-clip-text text-2xl">Binsta.</a>
+							<nav class="flex gap-6">
+								<a class="text-lg hover:underline" href="/user/login">Login</a>
+								<a class="text-lg hover:underline" href="/user/signup">Signup</a>
+							</nav>
+						</header>
 					{% endif %}
 				</ul>
 			</nav>
@@ -45,5 +44,6 @@
 				<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 				<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 			</body>
-
 		</html>
+	</body>
+</html></body></html>

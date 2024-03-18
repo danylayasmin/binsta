@@ -1,0 +1,20 @@
+{% extends "./layouts/app.twig" %}
+{% block title %}
+	Welcome
+{% endblock %}
+{% block content %}
+	<div class="transition-all duration-150 h-[calc(100vh-80px)] bg-cover bg-[url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=2669&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')]">
+		<div class="flex flex-col h-[calc(100vh-80px)] bg-white/80 text-black">
+			<main class="flex flex-col items-center justify-center flex-grow px-4 text-center">
+				<h1 class="text-4xl font-semibold mb-6">Welcome to
+					<span class="font-bold bg-gradient-to-br from-blue-400 to-blue-600 inline-block text-transparent bg-clip-text">Binsta</span>
+				</h1>
+				<p class="text-xl mb-6">Connect with fellow developers around the world 🌐</p>
+				<a href="/user/signup" class="inline-flex hover:bg-blue-800 items-center justify-center text-sm font-medium ring-offset-background transition-colors
+												             focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none
+												             disabled:opacity-50 h-10 bg-blue-600 text-white py-2 px-4 rounded shadow-sm">
+					Sign up</a>
+			</main>
+		</div>
+	</div>
+{% endblock %}
