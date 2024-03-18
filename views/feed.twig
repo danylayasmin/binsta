@@ -117,7 +117,7 @@
 									<span class="like-count ml-2 cursor-pointer" data-post-id="{{ post.id }}" @click="open = true">{{ post.like_count }}</span>
 
 									<!-- Modal -->
-									<div x-show="open" @click.away="open = false">
+									<div x-cloak x-show="open" @click.away="open = false">
 										<div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
 											<div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
 												<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
@@ -229,10 +229,10 @@
 								<form method="post" action="/home/comment">
 									<label>
 										<input class="min-w-full flex h-10 w-full rounded-md border border-input bg-background
-																																											px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent
-																																											file:text-sm file:font-medium placeholder:text-muted-foreground
-																																											focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
-																																											focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" name="comment" id="comment" placeholder="Add a comment..."/>
+																																																						px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent
+																																																						file:text-sm file:font-medium placeholder:text-muted-foreground
+																																																						focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+																																																						focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" name="comment" id="comment" placeholder="Add a comment..."/>
 									</label>
 									<input type="hidden" name="post_id" value="{{ post.id }}">
 								</form>
